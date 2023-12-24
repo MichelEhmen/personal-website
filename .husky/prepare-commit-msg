@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+# Define the branch names to be excluded
+EXCLUDE_BRANCHES=("main" "develop")
+
+# Fetch the current branch name
+CURRENT_BRANCH=$(git symbolic-ref --short HEAD)
+
+# Check if the current branch is in the list of branches to exclude
+if [[ " ${EXCLUDE_BRANCHES[@]} " =~ " ${CURRENT_BRANCH} " ]]; then
+	exit 0
+fi
+
+# Regex to extract the number from the branch name
+BRANCH_NUMBER_REGEX="(^([A-Za-z0-9-]+))"
+
+if [[ $CURRENT_BRANCH =~ $BRANCH_NUMBER_REGEX ]]; then
+	BRANCH_NUMBER="${BASH_REMATCH[1]}"
+else
+	echo "Branch name does not match the expected format. No number found."
+	exit 1
+fi
+
+# Retrieve the commit message
+COMMIT_MESSAGE=$(cat $1)
+
+# Check if the commit message already contains the number
+if [[ $COMMIT_MESSAGE =~ ^${BRANCH_NUMBER}: ]]; then
+	exit 0
+fi
+
+# Add the number to the commit message
+echo "${BRANCH_NUMBER}: ${COMMIT_MESSAGE}" >$1
