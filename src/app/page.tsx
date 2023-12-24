@@ -84,7 +84,8 @@ export default function Home() {
         >
           <h2>Michel Ehmen</h2>
           <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
+            test Instantly deploy your Next.js site to a shareable URL with
+            Vercel.
           </p>
         </a>
       </div>
