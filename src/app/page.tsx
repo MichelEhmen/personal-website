@@ -1,94 +1,171 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import stylex from '@stylexjs/stylex'
+import Card from './Card'
+import { spacing, text, scales } from './globalTokens.stylex'
+import Counter from './Counter'
+
+const HOMEPAGE = 'https://stylexjs.com'
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
+    <main {...stylex.props(style.main)}>
+      <div {...stylex.props(style.description)}>
+        <p {...stylex.props(style.descP)}>
           Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
+          <code {...stylex.props(style.code)}>app/page.tsx</code>
         </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+      </div>
+      <div {...stylex.props(style.hero)}>
+        <h1 {...stylex.props(style.h1)}>
+          Next.js App Dir<span {...stylex.props(style.emoji)}>T</span>️StyleX
+        </h1>
+        <Counter />
       </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+      <div {...stylex.props(style.grid)}>
+        <Card
+          body="Learn how to use StyleX to build UIs"
+          href={`${HOMEPAGE}/docs/learn/`}
+          title="Docs"
         />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>Michel Ehmen</h2>
-          <p>
-            test Instantly deploy your Next.js site to a shareable URL with
-            Vercel.
-          </p>
-        </a>
+        <Card
+          body="Browse through the StyleX API reference"
+          href={`${HOMEPAGE}/docs/api/`}
+          title="API"
+        />
+        <Card
+          body="Play with StyleX and look at the compile outputs"
+          href={`${HOMEPAGE}/playground/`}
+          title="Playground"
+        />
+        <Card
+          body="Get started with a NextJS+StyleX project"
+          href="https://github.com/nmn/nextjs-app-dir-stylex"
+          title="Templates"
+        />
       </div>
     </main>
   )
 }
+
+const MEDIA_MOBILE = '@media (max-width: 700px)' as const
+const MEDIA_TABLET =
+  '@media (min-width: 701px) and (max-width: 1120px)' as const
+
+const beat = stylex.keyframes({
+  '0%': { transform: scales.medium },
+  '10%': { transform: scales.large },
+  '20%': { transform: scales.medium },
+  '30%': { transform: scales.large },
+  '40%': { transform: scales.medium },
+  '90%': { transform: scales.small },
+  '100%': { transform: scales.medium }
+})
+
+const style = stylex.create({
+  main: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    minHeight: '100vh',
+    paddingTop: spacing.xxl,
+    paddingBottom: {
+      default: spacing.xxl,
+      [MEDIA_MOBILE]: spacing.md
+    }
+  },
+  hero: {
+    flexGrow: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: spacing.xl
+  },
+  h1: {
+    fontSize: text.h1,
+    lineHeight: 1,
+    fontWeight: 400,
+    textAlign: 'center',
+    display: 'flex',
+    gap: spacing.md,
+    whiteSpace: 'nowrap',
+    flexDirection: {
+      default: 'row',
+      [MEDIA_MOBILE]: 'column'
+    }
+  },
+  emoji: {
+    position: 'relative',
+    fontFamily: 'sans-serif',
+    top: {
+      default: 0,
+      [MEDIA_MOBILE]: spacing.xxxs
+    },
+    animationName: beat,
+    animationDuration: '2s',
+    animationIterationCount: 'infinite',
+    animationTimingFunction: 'linear'
+  },
+  description: {
+    display: 'inherit',
+    justifyContent: 'inherit',
+    alignItems: 'inherit',
+    fontSize: text.sm,
+    width: '100%',
+    zIndex: 2
+  },
+  descLink: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: spacing.xxs,
+    padding: { [MEDIA_MOBILE]: spacing.sm }
+  },
+  descP: {
+    display: { [MEDIA_MOBILE]: 'flex' },
+    position: {
+      default: 'relative',
+      [MEDIA_MOBILE]: 'fixed'
+    },
+    justifyContent: { [MEDIA_MOBILE]: 'center' },
+    alignItems: { [MEDIA_MOBILE]: 'center' },
+    width: { [MEDIA_MOBILE]: '100%' },
+    margin: 0,
+    paddingInline: spacing.sm,
+    paddingTop: {
+      default: spacing.sm,
+      [MEDIA_MOBILE]: spacing.lg
+    },
+    paddingBottom: {
+      default: spacing.sm,
+      [MEDIA_MOBILE]: spacing.md
+    },
+    borderWidth: {
+      default: '1px',
+      [MEDIA_MOBILE]: '0'
+    },
+    borderStyle: 'solid',
+    borderRadius: {
+      default: spacing.xs,
+      [MEDIA_MOBILE]: 0
+    },
+    inset: { [MEDIA_MOBILE]: '0 0 auto' }
+  },
+  code: {
+    fontWeight: 700
+  },
+  grid: {
+    display: 'grid',
+    gridTemplateColumns: {
+      default: 'repeat(4, minmax(25%, auto))',
+      [MEDIA_MOBILE]: '1fr',
+      [MEDIA_TABLET]: 'repeat(2, 50%)'
+    },
+    maxWidth: {
+      default: '100%',
+      [MEDIA_MOBILE]: 320
+    },
+    textAlign: { [MEDIA_MOBILE]: 'center' }
+  }
+})
