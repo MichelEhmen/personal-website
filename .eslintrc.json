@@ -1,11 +1,10 @@
 {
   "extends": ["next/core-web-vitals", "prettier"],
-  "plugins": ["prettier", "@stylexjs"],
+  "plugins": ["prettier"],
   "globals": {
     "React": "readonly"
   },
   "rules": {
-    "prettier/prettier": ["error"],
-    "@stylexjs/valid-styles": "error"
+    "prettier/prettier": ["error"]
   }
 }
