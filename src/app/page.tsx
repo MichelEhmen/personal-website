@@ -1,8 +1,8 @@
-import Navbar from '@/app/_components/Navbar'
-import About from '@/features/about'
-import Articles from '@/features/articles'
-import Home from '@/features/home'
-import Projects from '@/features/projects'
+import Navbar from '@/components/Navbar'
+import About from '@/sections/about'
+import Articles from '@/sections/articles'
+import Home from '@/sections/home'
+import Projects from '@/sections/projects'
 
 export default function App() {
   return (
