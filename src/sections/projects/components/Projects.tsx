@@ -1,5 +1,7 @@
+import Section from '@/components/Section'
+
 const Projects = () => {
-  return <div>Projects</div>
+  return <Section title="Projects">Projects</Section>
 }
 
 export default Projects

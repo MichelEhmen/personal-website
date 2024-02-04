@@ -10,7 +10,7 @@ export default function App() {
       <div className="container mx-auto my-4  px-4 sm:px-6 lg:px-20">
         <Navbar className="px-4" />
       </div>
-      <main className="container mx-auto flex flex-col px-4 sm:px-6 lg:px-20">
+      <main className="container mx-auto flex flex-col gap-4 px-4 sm:px-6 lg:px-20">
         <Home />
         <About />
         <Projects />

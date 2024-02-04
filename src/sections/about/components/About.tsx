@@ -1,5 +1,7 @@
+import Section from '@/components/Section'
+
 const About = () => {
-  return <div>About</div>
+  return <Section title={'About Me'}>About</Section>
 }
 
 export default About
