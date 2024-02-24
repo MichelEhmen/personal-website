@@ -2,6 +2,7 @@
 import Card from '@/components/Card'
 import { Project } from '../types/Project'
 import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 
 type ProjectCardProps = {
   project: Project
@@ -13,28 +14,39 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
     console.log('clicked card')
     setIsOpen(!isOpen)
   }
-
   return (
     <Card onClick={cardClickHandler} className="cursor-pointer">
-      <div className="flex flex-col divide-y divide-gray-400 *:py-2 first:*:pt-0 last:*:pb-0">
-        <div className="font-bold">{project.title}</div>
-        {isOpen && (
-          <div className="flex flex-col gap-2">
-            <p> {project.description}</p>
-            {/* <hr className="my-8 h-px border-0 bg-gray-200 dark:bg-gray-700" /> */}
-            <div className="flex flex-wrap gap-2">
-              {project.technologies.map((technology, idx) => (
-                <div
-                  key={technology + idx}
-                  className="rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700"
-                >
-                  {technology}
+      <motion.div
+        className="flex flex-col divide-y divide-gray-400 *:py-2 first:*:pt-0 last:*:pb-0"
+        layout
+      >
+        <motion.div className="font-bold" layout>
+          {project.title}
+        </motion.div>
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+            >
+              <div className="flex flex-col gap-2">
+                <p>{project.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {project.technologies.map((technology, idx) => (
+                    <div
+                      key={technology + idx}
+                      className="rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700"
+                    >
+                      {technology}
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
-      </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
     </Card>
   )
 }

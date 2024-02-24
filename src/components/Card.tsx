@@ -1,21 +1,23 @@
 import classNames from 'classnames'
-import { HTMLAttributes, PropsWithChildren } from 'react'
+import { HTMLMotionProps, motion } from 'framer-motion'
+import { PropsWithChildren } from 'react'
 
 const Card = ({
   children,
   className,
   ...divProps
-}: PropsWithChildren<HTMLAttributes<HTMLDivElement>>) => {
+}: PropsWithChildren<HTMLMotionProps<'div'>>) => {
   return (
-    <div
+    <motion.div
       className={classNames(
         className,
-        'rounded-lg border-4 border-primary p-4 text-rock'
+        'rounded-lg border-2 border-primary p-4 text-rock shadow-lg'
       )}
       {...divProps}
+      layout
     >
       {children}
-    </div>
+    </motion.div>
   )
 }
 
