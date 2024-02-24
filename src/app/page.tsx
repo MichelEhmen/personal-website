@@ -12,9 +12,9 @@ export default function App() {
       </div>
       <main className="container mx-auto flex flex-col gap-4 px-4 sm:px-6 lg:px-20">
         <Home />
-        <About />
-        <Projects />
         <Articles />
+        <Projects />
+        <About />
       </main>
     </>
   )

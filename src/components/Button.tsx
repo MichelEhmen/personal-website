@@ -10,7 +10,7 @@ const Button = ({
       {...buttonProps}
       className={classNames(
         className,
-        'rounded-md border-2 bg-primary  px-4 py-2 text-secondary'
+        'rounded-md bg-primary  px-4 py-2 text-secondary'
       )}
     >
       {children}

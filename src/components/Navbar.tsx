@@ -17,7 +17,7 @@ const Navbar = ({ className }: NavbarProps) => {
         className,
         `relative flex items-center justify-between gap-4 ${
           isMenuOpen ? 'rounded-t-lg' : 'rounded-lg'
-        } bg-secondary px-4 py-1 text-black`
+        } bg-secondary px-4 py-1 text-rock`
       )}
     >
       <a href="#" className="flex flex-col text-xl font-bold">

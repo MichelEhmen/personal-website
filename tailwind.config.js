@@ -6,8 +6,11 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: colors.green[800],
-        secondary: colors.slate[100]
+        // primary: '#f5d079',
+        primary: colors.amber[600],
+        secondary: colors.stone[100],
+        rock: colors.stone[600],
+        sand: '#f8df9e'
       },
       fontSize: {
         '3xl': '1.953rem',

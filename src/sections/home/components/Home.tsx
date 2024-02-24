@@ -4,11 +4,14 @@ const Home = () => {
   return (
     <div className="flex  justify-center">
       <div className="flex flex-col justify-center">
-        <h1 className="text-3xl font-bold">
-          Hi, I&apos;m Michel
-          <br />
-          and I&apos;m a Software Engineer
-        </h1>
+        <div className="-rotate-3 rounded-lg bg-secondary p-4 md:p-6">
+          <h1 className="text-xl font-bold text-rock sm:text-2xl md:text-3xl md:leading-9">
+            Hi, I&apos;m Michel
+            <br />
+            and I&apos;m a
+            <span className="text-primary"> Software Engineer</span>
+          </h1>
+        </div>
       </div>
       <div className="flex flex-col justify-center">
         <Image
