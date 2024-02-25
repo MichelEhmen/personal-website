@@ -13,7 +13,7 @@ const Articles = () => {
     { title: 'scss', description: 'lorem ipsum dolor' }
   ]
   return (
-    <Section title="Latest Articles">
+    <Section title="Latest Articles" id="articles">
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         {articles.map((article) => (
           <Card key={article.title}>{article.title}</Card>

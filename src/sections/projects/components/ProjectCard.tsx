@@ -15,7 +15,14 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
     setIsOpen(!isOpen)
   }
   return (
-    <Card onClick={cardClickHandler} className="cursor-pointer">
+    <Card
+      onClick={cardClickHandler}
+      className="cursor-pointer"
+      whileHover={{
+        scale: 1.02
+      }}
+      whileTap={{ scale: 0.95 }}
+    >
       <motion.div
         className="flex flex-col divide-y divide-gray-400 *:py-2 first:*:pt-0 last:*:pb-0"
         layout

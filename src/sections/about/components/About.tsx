@@ -2,7 +2,7 @@ import Section from '@/components/Section'
 
 const About = () => {
   return (
-    <Section title={'About Me'}>
+    <Section title={'About Me'} id="about">
       <p>
         Hey there! My name is Michel and I&apos;m a dedicated Full-Stack
         Developer with a special place in my heart for React and TypeScript. My
