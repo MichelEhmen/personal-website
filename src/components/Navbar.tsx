@@ -2,15 +2,29 @@
 import { useState } from 'react'
 import Button from '@/components/Button'
 import classNames from 'classnames'
+import { NavbarItem } from '@/types/NavbarItem'
 
 type NavbarProps = {
   className?: string
+  navbarItems: NavbarItem[]
 }
 
-const Navbar = ({ className }: NavbarProps) => {
+const Navbar = ({ className, navbarItems }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const navbarItems = ['AboutMe', 'Projects', 'Articles']
+  // const navbarItems: NavbarItem[] = [
+  //   { label: 'AboutMe', id: 'about' },
+  //   { label: 'Projects' },
+  //   { label: 'Articles' }
+  // ]
 
+  const scrolltoHash = function (element_id: string) {
+    const element = document.getElementById(element_id)
+    element?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'end',
+      inline: 'nearest'
+    })
+  }
   return (
     <nav
       className={classNames(
@@ -65,16 +79,16 @@ const Navbar = ({ className }: NavbarProps) => {
       <div
         className={`absolute left-0 top-16 flex w-full flex-col gap-2 rounded-b-lg  bg-secondary p-4 transition-all duration-300 ease-in-out md:relative md:left-auto md:top-0 md:w-auto md:flex-row md:gap-4 md:p-0 ${
           isMenuOpen ? 'block' : 'hidden'
-        } md:block`}
+        } z-10 md:flex`}
       >
         {navbarItems.map((navbarItem, idx) => (
-          <a
-            href="#"
+          <div
             key={idx}
-            className="rounded-md p-2 text-black hover:bg-gray-100"
+            className="cursor-pointer rounded-md p-2 text-black hover:bg-gray-100"
+            onClick={() => scrolltoHash(navbarItem.id || '')}
           >
-            {navbarItem}
-          </a>
+            {navbarItem.label}
+          </div>
         ))}
         <Button className="mt-2 md:mt-0">Contact Me</Button>
       </div>
