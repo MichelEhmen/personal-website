@@ -7,4 +7,5 @@ export type Publication = {
   title: string
   description: string
   type?: PublicationType
+  url?: string
 }

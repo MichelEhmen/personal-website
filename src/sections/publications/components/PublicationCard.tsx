@@ -16,9 +16,16 @@ const PublicationCard = ({ publication }: PublicationCardProps) => {
       key={publication.title}
       image={publication.image}
       onClick={cardClickHandler}
-      whileHover={{
-        scale: 1.02
-      }}
+      className="cursor-pointer"
+      whileHover={
+        isOpen
+          ? {
+              scale: 1
+            }
+          : {
+              scale: 1.02
+            }
+      }
       whileTap={{ scale: 0.95 }}
     >
       <motion.div className="flex flex-col">
@@ -28,6 +35,7 @@ const PublicationCard = ({ publication }: PublicationCardProps) => {
         <AnimatePresence>
           {isOpen && (
             <motion.div
+              className="cursor-auto"
               initial={{ opacity: 0, height: 0, y: -40 }}
               animate={{
                 opacity: 1,
@@ -52,6 +60,15 @@ const PublicationCard = ({ publication }: PublicationCardProps) => {
             >
               <div className="flex flex-col gap-2">
                 <p>{publication.description}</p>
+                {publication.url && (
+                  <a
+                    href={publication.url}
+                    target="_blank"
+                    className="text-primary"
+                  >
+                    Read more...
+                  </a>
+                )}
                 {publication.type && (
                   <div className="rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
                     {publication.type}
