@@ -1,35 +1,41 @@
-'use client'
 import Card from '@/components/Card'
-import { Project } from '../types/Project'
 import { useState } from 'react'
+import { Publication } from '../types/Publication'
 import { AnimatePresence, motion } from 'framer-motion'
 
-type ProjectCardProps = {
-  project: Project
+type PublicationCardProps = {
+  publication: Publication
 }
-const ProjectCard = ({ project }: ProjectCardProps) => {
+const PublicationCard = ({ publication }: PublicationCardProps) => {
   const [isOpen, setIsOpen] = useState(false)
-
   const cardClickHandler = () => {
-    console.log('clicked card')
     setIsOpen(!isOpen)
   }
   return (
     <Card
+      key={publication.title}
+      image={publication.image}
       onClick={cardClickHandler}
       className="cursor-pointer"
-      whileHover={{
-        scale: 1.02
-      }}
+      whileHover={
+        isOpen
+          ? {
+              scale: 1
+            }
+          : {
+              scale: 1.02
+            }
+      }
       whileTap={{ scale: 0.95 }}
     >
-      <motion.div className="flex flex-col" layout>
+      <motion.div className="flex flex-col">
         <motion.div className="z-10 bg-secondary font-bold" layout>
-          {project.title}
+          {publication.title}
         </motion.div>
         <AnimatePresence>
           {isOpen && (
             <motion.div
+              className="cursor-auto"
               initial={{ opacity: 0, height: 0, y: -40 }}
               animate={{
                 opacity: 1,
@@ -53,17 +59,21 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
               }}
             >
               <div className="flex flex-col gap-2">
-                <p>{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((technology, idx) => (
-                    <div
-                      key={technology + idx}
-                      className="rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700"
-                    >
-                      {technology}
-                    </div>
-                  ))}
-                </div>
+                <p>{publication.description}</p>
+                {publication.url && (
+                  <a
+                    href={publication.url}
+                    target="_blank"
+                    className="text-primary"
+                  >
+                    Read more...
+                  </a>
+                )}
+                {publication.type && (
+                  <div className="rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700">
+                    {publication.type}
+                  </div>
+                )}
               </div>
             </motion.div>
           )}
@@ -72,5 +82,4 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
     </Card>
   )
 }
-
-export default ProjectCard
+export default PublicationCard

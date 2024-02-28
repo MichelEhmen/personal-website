@@ -1,4 +1,5 @@
 import Section from '@/components/Section'
+import { FaEnvelope, FaGithub, FaLinkedinIn } from 'react-icons/fa'
 
 const About = () => {
   return (
@@ -25,6 +26,27 @@ const About = () => {
         creating, whether it&apos;s crafting a piece of furniture or programming
         a new app, that really lights my fire.
       </p>
+      <div className="mt-4 flex justify-start space-x-4">
+        <a
+          href="https://github.com/michelehmen"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary"
+        >
+          <FaGithub size={24} />
+        </a>
+        <a
+          href="https://linkedin.com/in/michel-ehmen/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary"
+        >
+          <FaLinkedinIn size={24} />
+        </a>
+        <a href="mailto:michelehmen@hotmail.de" className="text-primary">
+          <FaEnvelope size={24} />
+        </a>
+      </div>
     </Section>
   )
 }
