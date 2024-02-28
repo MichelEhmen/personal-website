@@ -1,8 +1,8 @@
 import Navbar from '@/components/Navbar'
 import About from '@/sections/about'
-import Articles from '@/sections/articles'
 import Home from '@/sections/home'
 import Projects from '@/sections/projects'
+import Publications from '@/sections/publications'
 import { NavbarItem } from '@/types/NavbarItem'
 
 export default function App() {
@@ -12,7 +12,7 @@ export default function App() {
     {
       label: 'Articles',
       id: 'articles',
-      component: <Articles key="articles" />
+      component: <Publications key="articles" />
     },
     {
       label: 'Projects',
@@ -36,7 +36,7 @@ export default function App() {
             )}
         />
       </div>
-      <main className="container mx-auto flex flex-col gap-4 px-4 sm:px-6 lg:px-20">
+      <main className="container mx-auto flex flex-col gap-4 px-4 pb-4 sm:px-6 sm:pb-6 lg:px-20">
         {sections.map((section) => section.component)}
       </main>
     </>
