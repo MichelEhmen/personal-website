@@ -36,7 +36,7 @@ export default function App() {
             )}
         />
       </div>
-      <main className="container mx-auto flex flex-col gap-4 px-4 sm:px-6 lg:px-20">
+      <main className="container mx-auto flex flex-col gap-4 px-4 pb-4 sm:px-6 sm:pb-6 lg:px-20">
         {sections.map((section) => section.component)}
       </main>
     </>
