@@ -23,19 +23,34 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       }}
       whileTap={{ scale: 0.95 }}
     >
-      <motion.div
-        className="flex flex-col divide-y divide-gray-400 *:py-2 first:*:pt-0 last:*:pb-0"
-        layout
-      >
-        <motion.div className="font-bold" layout>
+      <motion.div className="flex flex-col" layout>
+        <motion.div className="z-10 bg-secondary font-bold" layout>
           {project.title}
         </motion.div>
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
+              initial={{ opacity: 0, height: 0, y: -40 }}
+              animate={{
+                opacity: 1,
+                height: 'auto',
+                y: 0,
+                transition: {
+                  opacity: { duration: 0.4 },
+                  height: { duration: 0.3 },
+                  y: { duration: 0.3 }
+                }
+              }}
+              exit={{
+                opacity: 0,
+                height: 0,
+                y: -50,
+                transition: {
+                  height: { duration: 0.4 },
+                  opacity: { duration: 0.1 },
+                  y: { duration: 0.3 }
+                }
+              }}
             >
               <div className="flex flex-col gap-2">
                 <p>{project.description}</p>
