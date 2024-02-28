@@ -1,22 +1,36 @@
 import classNames from 'classnames'
 import { HTMLMotionProps, motion } from 'framer-motion'
 import { PropsWithChildren } from 'react'
+import Image, { StaticImageData } from 'next/image'
+type CardProps = HTMLMotionProps<'div'> & {
+  image?: StaticImageData
+}
 
 const Card = ({
   children,
   className,
+  image,
   ...divProps
-}: PropsWithChildren<HTMLMotionProps<'div'>>) => {
+}: PropsWithChildren<CardProps>) => {
   return (
     <motion.div
       className={classNames(
         className,
-        'rounded-lg border-2 border-primary p-4 text-rock shadow-lg'
+        'rounded-lg border-2 border-primary text-rock shadow-lg'
       )}
       {...divProps}
       layout
     >
-      {children}
+      {image && (
+        <Image
+          className="h-20 w-full object-cover"
+          src={image} // Route of the image file
+          // height={300} // Desired size with correct aspect ratio
+          // width={300} // Desired size with correct aspect ratio
+          alt="Publication logo"
+        />
+      )}
+      <div className="p-4">{children}</div>
     </motion.div>
   )
 }
