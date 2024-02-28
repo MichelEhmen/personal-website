@@ -5,9 +5,9 @@ import { Project } from '../types/Project'
 const Projects = () => {
   const projects: Project[] = [
     {
-      title: 'KPI Management System for Sports Car Production',
+      title: 'KPI Management System for a factory',
       description:
-        'Developed a KPI Manager for a German sports car manufacturer, aggregating production data and enabling visualization of historical values for quicker error detection and milestone planning for vehicle models.',
+        'Developed a KPI Manager for a manufacturer, aggregating production data and enabling visualization of historical values for quicker error detection and milestone planning for different models.',
       technologies: ['TypeScript', 'React', 'AWS', 'SCSS'],
       fromDate: new Date(),
       toDate: new Date()
@@ -15,7 +15,7 @@ const Projects = () => {
     {
       title: 'Smart City Dashboard for Real-Time Information',
       description:
-        'Developed a smart city dashboard web application for a city in North Rhine-Westphalia, aimed at providing citizens with real-time information on parking space occupancy and weather conditions. The application features cloud connectivity and dynamically aggregates data from multiple sources, offering various user-friendly views.',
+        'Developed a smart city dashboard web application for a city, aimed at providing citizens with real-time information on parking space occupancy and weather conditions. The application features cloud connectivity and dynamically aggregates data from multiple sources, offering various user-friendly views.',
       technologies: [
         'TypeScript',
         'React',
