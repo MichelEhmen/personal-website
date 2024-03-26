@@ -29,7 +29,7 @@ const Card = ({
           alt="Publication logo"
         />
       )}
-      <div className="p-4">{children}</div>
+      <motion.div className="p-4">{children}</motion.div>
     </motion.div>
   )
 }

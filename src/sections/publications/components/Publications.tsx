@@ -15,25 +15,11 @@ const Publications = () => {
     <Section title="Latest Articles" id="articles" className="relative">
       <div className="grid max-w-full grid-cols-1 items-start gap-4 sm:grid-cols-2 md:grid-cols-3">
         {PUBLICATIONS.map((publication, idx) => (
-          <>
+          <div key={idx}>
             {publication.id === selectedPublicationId && (
-              <div key={`${idx} placeholder`} />
+              <div className="h-20" />
             )}
-            {/* <motion.div */}
-            {/*   className={ */}
-            {/*     publication.id === selectedPublicationId */}
-            {/*       ? 'absolute left-0 right-0 top-0 z-20 m-10 border border-black bg-secondary' */}
-            {/*       : 'border border-black' */}
-            {/*   } */}
-            {/*   key={idx} */}
-            {/*   layout */}
-            {/*   onClick={() => setSelectedPublicationId(publication.id)} */}
-            {/* > */}
-            {/*   test */}
-            {/*   {publication.id === selectedPublicationId && <div>1</div>} */}
-            {/* </motion.div> */}
             <PublicationCard
-              key={idx}
               className={classNames({
                 'absolute left-0 right-0 top-0 z-20 m-10 border border-black bg-secondary':
                   publication.id === selectedPublicationId
@@ -42,7 +28,7 @@ const Publications = () => {
               open={publication.id === selectedPublicationId}
               onCardClick={setSelectedPublicationId}
             />
-          </>
+          </div>
         ))}
       </div>
       <AnimatePresence>
