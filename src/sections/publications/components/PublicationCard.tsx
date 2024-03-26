@@ -1,24 +1,32 @@
 import Card from '@/components/Card'
-import { useState } from 'react'
+import { HTMLAttributes } from 'react'
 import { Publication } from '../types/Publication'
 import { AnimatePresence, motion } from 'framer-motion'
+import classNames from 'classnames'
 
 type PublicationCardProps = {
   publication: Publication
+  open: boolean
+  onCardClick: (publicationId: string | null) => void
 }
-const PublicationCard = ({ publication }: PublicationCardProps) => {
-  const [isOpen, setIsOpen] = useState(false)
+const PublicationCard = ({
+  publication,
+  open,
+  onCardClick,
+  className
+}: HTMLAttributes<HTMLDivElement> & PublicationCardProps) => {
   const cardClickHandler = () => {
-    setIsOpen(!isOpen)
+    onCardClick(open ? null : publication.id)
   }
+
   return (
     <Card
       key={publication.title}
       image={publication.image}
       onClick={cardClickHandler}
-      className="cursor-pointer"
+      className={classNames({ 'cursor-pointer': !open }, className)}
       whileHover={
-        isOpen
+        open
           ? {
               scale: 1
             }
@@ -27,13 +35,14 @@ const PublicationCard = ({ publication }: PublicationCardProps) => {
             }
       }
       whileTap={{ scale: 0.95 }}
+      layout
     >
-      <motion.div className="flex flex-col">
+      <motion.div className="flex flex-col" layout>
         <motion.div className="z-10 bg-secondary font-bold" layout>
           {publication.title}
         </motion.div>
         <AnimatePresence>
-          {isOpen && (
+          {open && (
             <motion.div
               className="cursor-auto"
               initial={{ opacity: 0, height: 0, y: -40 }}

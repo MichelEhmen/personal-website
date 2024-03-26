@@ -19,7 +19,6 @@ const Card = ({
         'rounded-lg border-2 border-primary text-rock shadow-lg'
       )}
       {...divProps}
-      layout
     >
       {image && (
         <Image
