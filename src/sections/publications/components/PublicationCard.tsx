@@ -1,8 +1,8 @@
 import Card from '@/components/Card'
-import { HTMLAttributes } from 'react'
 import { Publication } from '../types/Publication'
-import { AnimatePresence, motion } from 'framer-motion'
+import { HTMLMotionProps, motion } from 'framer-motion'
 import classNames from 'classnames'
+import React from 'react'
 
 type PublicationCardProps = {
   publication: Publication
@@ -13,14 +13,16 @@ const PublicationCard = ({
   publication,
   open,
   onCardClick,
-  className
-}: HTMLAttributes<HTMLDivElement> & PublicationCardProps) => {
+  className,
+  ...props
+}: HTMLMotionProps<'div'> & PublicationCardProps) => {
   const cardClickHandler = () => {
     onCardClick(open ? null : publication.id)
   }
 
   return (
     <Card
+      data-publication-id={publication.id}
       key={publication.id}
       image={publication.image}
       onClick={cardClickHandler}
@@ -40,12 +42,13 @@ const PublicationCard = ({
       }
       whileTap={{ scale: 0.95 }}
       layout
+      {...props}
     >
-      <motion.div className="flex flex-col">
-        <motion.div className=" font-bold">{publication.title}</motion.div>
+      <div className="flex flex-col">
+        <div className=" font-bold">{publication.title}</div>
         {open && (
-          <motion.div className="flex flex-col gap-2">
-            <motion.p>{publication.description}</motion.p>
+          <div className="flex flex-col gap-2">
+            <p>{publication.description}</p>
             {publication.url && (
               <a
                 href={publication.url}
@@ -60,9 +63,9 @@ const PublicationCard = ({
                 {publication.type}
               </div>
             )}
-          </motion.div>
+          </div>
         )}
-      </motion.div>
+      </div>
     </Card>
   )
 }

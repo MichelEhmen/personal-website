@@ -3,7 +3,7 @@ import Section from '@/components/Section'
 import PublicationCard from './PublicationCard'
 import { PUBLICATIONS } from '../data/publications'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import classNames from 'classnames'
 
 const Publications = () => {
@@ -11,13 +11,35 @@ const Publications = () => {
     string | null
   >(null)
 
+  const [heights, setHeights] = useState<number[]>([])
+  const elementRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  useEffect(() => {
+    const newHeights = elementRefs.current.map((ref) => ref?.offsetHeight || 0)
+    setHeights(newHeights)
+  }, [])
+
   return (
     <Section title="Latest Articles" id="articles" className="relative">
       <div className="grid max-w-full grid-cols-1 items-start gap-4 sm:grid-cols-2 md:grid-cols-3">
         {PUBLICATIONS.map((publication, idx) => (
-          <div key={idx}>
+          <div
+            key={idx}
+            ref={(el) => {
+              elementRefs.current[idx] = el
+            }}
+          >
             {publication.id === selectedPublicationId && (
-              <div className="h-20" />
+              <div
+                style={{
+                  height:
+                    heights[
+                      PUBLICATIONS.findIndex(
+                        (p) => p.id === selectedPublicationId
+                      )
+                    ]
+                }}
+              />
             )}
             <PublicationCard
               className={classNames({
