@@ -13,7 +13,7 @@ const Home = () => {
           </h1>
         </div>
       </div>
-      <div className="flex flex-col justify-center">
+      <div className="z-10 flex flex-col justify-center">
         <Image
           src="/images/profile.png" // Route of the image file
           height={300} // Desired size with correct aspect ratio

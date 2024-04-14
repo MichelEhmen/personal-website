@@ -17,14 +17,14 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <Card
       onClick={cardClickHandler}
-      className="cursor-pointer"
+      className="cursor-pointer bg-secondary"
       whileHover={{
         scale: 1.02
       }}
       whileTap={{ scale: 0.95 }}
     >
       <div className="flex flex-col">
-        <div className="z-10 bg-secondary font-bold">{project.title}</div>
+        <div className="z-10 font-bold">{project.title}</div>
         <AnimatePresence>
           {isOpen && (
             <motion.div

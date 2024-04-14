@@ -13,7 +13,10 @@ const Section = ({
 }: PropsWithChildren<HTMLAttributes<HTMLDivElement> & SectionProps>) => {
   return (
     <div
-      className={classNames(className, 'rounded-lg bg-secondary p-4 text-rock')}
+      className={classNames(
+        className,
+        'rounded-lg border border-white/75 bg-white bg-opacity-30 p-4 text-rock shadow-lg backdrop-blur-md'
+      )}
       {...divProps}
     >
       <h2 className="pb-2 text-lg font-bold">{title}</h2>
