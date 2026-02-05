@@ -37,13 +37,16 @@ const ValentinePage = () => {
           ) : (
             <>
               <h1 className="mb-6 animate-pulse text-7xl md:text-8xl">
-                💕✨💖✨💕
+                ✨💖✨
               </h1>
               <h2 className="mb-6 text-4xl font-bold text-pink-100 md:text-5xl">
                 Yay!
               </h2>
               <p className="text-2xl text-pink-50 md:text-3xl">
-                I knew you would say yes! 💗
+                I knew you would say yes! 🥰
+              </p>
+              <p className="mt-4 text-xl text-pink-100 md:text-2xl">
+                I&lsquo;ll see you in Münster on Valentine&lsquo;s Day!
               </p>
               <div className="mt-6 flex justify-center">
                 <img
@@ -65,7 +68,7 @@ const ValentinePage = () => {
                 transform: `scale(${yesSize})`,
                 transition: 'transform 0.3s ease'
               }}
-              className="rounded-full bg-pink-500 px-8 py-3 font-bold text-white shadow-lg transition-colors duration-200 hover:bg-pink-600 hover:shadow-pink-500/50"
+              className="rounded-full bg-pink-500 px-12 py-4 text-lg font-bold text-white shadow-lg transition-colors duration-200 hover:bg-pink-600"
             >
               Yes
             </button>
@@ -77,7 +80,7 @@ const ValentinePage = () => {
                 transform: `translate(${noButtonPosition.x}px, ${noButtonPosition.y}px) scale(${noSize})`,
                 transition: 'transform 0.3s ease'
               }}
-              className="rounded-full bg-gray-400 px-8 py-3 font-bold text-white shadow-lg hover:bg-gray-500"
+              className="rounded-full bg-gray-400 px-12 py-4 text-lg font-bold text-white shadow-lg"
             >
               No
             </button>
