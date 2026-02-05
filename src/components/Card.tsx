@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import { HTMLMotionProps, motion } from 'framer-motion'
 import { PropsWithChildren } from 'react'
 import Image, { StaticImageData } from 'next/image'
+import React from 'react'
 type CardProps = HTMLMotionProps<'div'> & {
   image?: StaticImageData
 }
@@ -19,11 +20,10 @@ const Card = ({
         'rounded-lg border-2 border-primary text-rock shadow-lg'
       )}
       {...divProps}
-      layout
     >
       {image && (
         <Image
-          className="h-20 w-full object-cover"
+          className="h-20 w-full rounded-t-lg object-cover"
           src={image} // Route of the image file
           // height={300} // Desired size with correct aspect ratio
           // width={300} // Desired size with correct aspect ratio

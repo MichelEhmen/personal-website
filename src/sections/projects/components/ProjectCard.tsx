@@ -23,10 +23,8 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       }}
       whileTap={{ scale: 0.95 }}
     >
-      <motion.div className="flex flex-col" layout>
-        <motion.div className="z-10 bg-secondary font-bold" layout>
-          {project.title}
-        </motion.div>
+      <div className="flex flex-col">
+        <div className="z-10 bg-secondary font-bold">{project.title}</div>
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -68,7 +66,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             </motion.div>
           )}
         </AnimatePresence>
-      </motion.div>
+      </div>
     </Card>
   )
 }
