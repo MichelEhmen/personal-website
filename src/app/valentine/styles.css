@@ -1,0 +1,73 @@
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+.gradient-bg-valentine {
+  overflow: hidden;
+}
+
+.gradients-container-valentine {
+  filter: blur(60px);
+  width: 100%;
+  height: 100%;
+}
+
+.heart-gradient-1 {
+  position: absolute;
+  background: radial-gradient(
+      circle at center,
+      rgba(255, 105, 180, 0.4) 0,
+      rgba(255, 105, 180, 0) 50%
+    )
+    no-repeat;
+  width: 600px;
+  height: 600px;
+  top: 10%;
+  left: 10%;
+  animation: float 8s ease-in-out infinite, pulse-glow 4s ease-in-out infinite;
+}
+
+.heart-gradient-2 {
+  position: absolute;
+  background: radial-gradient(
+      circle at center,
+      rgba(255, 20, 147, 0.4) 0,
+      rgba(255, 20, 147, 0) 50%
+    )
+    no-repeat;
+  width: 500px;
+  height: 500px;
+  top: 40%;
+  right: 10%;
+  animation: float 10s ease-in-out infinite reverse,
+    pulse-glow 5s ease-in-out infinite;
+}
+
+.heart-gradient-3 {
+  position: absolute;
+  background: radial-gradient(
+      circle at center,
+      rgba(255, 182, 193, 0.5) 0,
+      rgba(255, 182, 193, 0) 50%
+    )
+    no-repeat;
+  width: 700px;
+  height: 700px;
+  bottom: 10%;
+  left: 30%;
+  animation: float 12s ease-in-out infinite, pulse-glow 6s ease-in-out infinite;
+}
