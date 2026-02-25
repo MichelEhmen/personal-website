@@ -73,7 +73,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             <div className="interactive"></div>
           </div>
         </div>
-        <div className="opacity-100">{children}</div>
+        <div className="relative z-10 opacity-100">{children}</div>
       </body>
     </html>
   )
