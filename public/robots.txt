@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Block Valentine page from indexing
+Disallow: /valentine
