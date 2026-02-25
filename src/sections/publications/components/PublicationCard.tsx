@@ -1,6 +1,6 @@
 import Card from '@/components/Card'
 import { Publication } from '../types/Publication'
-import { HTMLMotionProps, motion } from 'framer-motion'
+import { HTMLMotionProps } from 'framer-motion'
 import classNames from 'classnames'
 import React from 'react'
 

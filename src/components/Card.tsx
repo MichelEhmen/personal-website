@@ -2,8 +2,7 @@ import classNames from 'classnames'
 import { HTMLMotionProps, motion } from 'framer-motion'
 import { PropsWithChildren } from 'react'
 import Image, { StaticImageData } from 'next/image'
-import React from 'react'
-type CardProps = HTMLMotionProps<'div'> & {
+type CardProps = Omit<HTMLMotionProps<'div'>, 'ref'> & {
   image?: StaticImageData
 }
 

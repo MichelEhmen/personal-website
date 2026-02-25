@@ -7,7 +7,7 @@ import Publications from '@/sections/publications'
 import { NavbarItem } from '@/types/NavbarItem'
 
 export default function App() {
-  type Section = { label?: string; id?: string; component: JSX.Element }
+  type Section = { label?: string; id?: string; component: React.ReactElement }
 
   const sections: Section[] = [
     { id: 'home', component: <Home key="home" /> },
