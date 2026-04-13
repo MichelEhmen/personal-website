@@ -1,65 +1,76 @@
 'use client'
-import Card from '@/components/Card'
+
 import { Project } from '../types/Project'
 import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
 
 type ProjectCardProps = {
   project: Project
+  index: number
 }
-const ProjectCard = ({ project }: ProjectCardProps) => {
+
+const ProjectCard = ({ project, index }: ProjectCardProps) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const cardClickHandler = () => {
-    console.log('clicked card')
     setIsOpen(!isOpen)
   }
+
   return (
-    <Card
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      whileHover={{ scale: 1.02 }}
       onClick={cardClickHandler}
-      className="cursor-pointer bg-secondary"
-      whileHover={{
-        scale: 1.02
-      }}
-      whileTap={{ scale: 0.95 }}
+      className="glass-card group cursor-pointer overflow-hidden p-6 transition-all"
     >
       <div className="flex flex-col">
-        <div className="z-10 font-bold">{project.title}</div>
+        <div className="mb-2 flex items-start justify-between">
+          <h3 className="text-xl font-bold text-white">{project.title}</h3>
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+            className="flex-shrink-0 text-gray-400"
+          >
+            <ChevronDown size={24} />
+          </motion.div>
+        </div>
+
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, height: 0, y: -40 }}
+              initial={{ opacity: 0, height: 0 }}
               animate={{
                 opacity: 1,
                 height: 'auto',
-                y: 0,
                 transition: {
                   opacity: { duration: 0.4 },
-                  height: { duration: 0.3 },
-                  y: { duration: 0.3 }
+                  height: { duration: 0.3 }
                 }
               }}
               exit={{
                 opacity: 0,
                 height: 0,
-                y: -50,
                 transition: {
-                  height: { duration: 0.4 },
-                  opacity: { duration: 0.1 },
-                  y: { duration: 0.3 }
+                  height: { duration: 0.3 },
+                  opacity: { duration: 0.2 }
                 }
               }}
+              className="overflow-hidden"
             >
-              <div className="flex flex-col gap-2">
-                <p>{project.description}</p>
+              <div className="mt-4 flex flex-col gap-4">
+                <p className="text-gray-300">{project.description}</p>
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((technology, idx) => (
-                    <div
+                    <span
                       key={technology + idx}
-                      className="rounded-full bg-gray-200 px-3 py-1 text-sm font-semibold text-gray-700"
+                      className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-sm font-medium text-white backdrop-blur-sm"
                     >
                       {technology}
-                    </div>
+                    </span>
                   ))}
                 </div>
               </div>
@@ -67,7 +78,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           )}
         </AnimatePresence>
       </div>
-    </Card>
+    </motion.div>
   )
 }
 

@@ -4,8 +4,8 @@ const Home = () => {
   return (
     <div className="flex  justify-center">
       <div className="flex flex-col justify-center">
-        <div className="-rotate-3 rounded-lg bg-secondary p-4 md:p-6">
-          <h1 className="text-xl font-bold text-rock sm:text-2xl md:text-3xl md:leading-9">
+        <div className="bg-secondary -rotate-3 rounded-lg p-4 md:p-6">
+          <h1 className="text-rock text-xl font-bold sm:text-2xl md:text-3xl md:leading-9">
             Hi, I&apos;m Michel
             <br />
             and I&apos;m a

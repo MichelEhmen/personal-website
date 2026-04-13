@@ -15,7 +15,7 @@ const Section = ({
     <div
       className={classNames(
         className,
-        'rounded-lg border border-white/75 bg-white bg-opacity-30 p-4 text-rock shadow-lg backdrop-blur-md'
+        'text-rock rounded-lg border border-white/75 bg-white bg-opacity-30 p-4 shadow-lg backdrop-blur-md'
       )}
       {...divProps}
     >

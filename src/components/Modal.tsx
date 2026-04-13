@@ -16,7 +16,7 @@ const Modal = () => {
       onClick={handleClose}
     >
       <div
-        className="mx-4 rounded-lg bg-secondary p-4 text-rock shadow-lg"
+        className="bg-secondary text-rock mx-4 rounded-lg p-4 shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="mb-4 text-lg font-bold">Website Under Construction</h2>
@@ -25,7 +25,7 @@ const Modal = () => {
           nap. Check back soon for the grand awakening!
         </p>
         <button
-          className="mt-4 rounded bg-primary px-4 py-2 text-secondary"
+          className="bg-primary text-secondary mt-4 rounded px-4 py-2"
           onClick={handleClose}
         >
           Close

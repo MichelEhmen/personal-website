@@ -37,43 +37,8 @@ export const metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" className="h-full w-full">
-      <body
-        className={`${inter.className} h-full w-full bg-gradient-to-br from-sand to-amber-200 text-slate-100`}
-      >
-        {/* <div className="fixed left-0 top-0 flex h-full w-full items-center justify-center"> */}
-        {/*   <div className="left-4 top-0 h-96 w-96 animate-blob rounded-full bg-purple-300 opacity-70 mix-blend-multiply blur-xl filter"></div> */}
-        {/*   <div className="animation-delay-2000 right-4 top-0 h-96 w-96 animate-blob rounded-full bg-yellow-300 opacity-70 mix-blend-multiply blur-xl filter"></div> */}
-        {/*   <div className="animation-delay-4000 left-20 top-8 h-96 w-96 animate-blob rounded-full bg-pink-300 opacity-70 mix-blend-multiply blur-xl filter"></div> */}
-        {/* </div> */}
-        <div className="gradient-bg fixed left-0 top-0 h-full w-full">
-          <svg xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <filter id="goo">
-                <feGaussianBlur
-                  in="SourceGraphic"
-                  stdDeviation="10"
-                  result="blur"
-                />
-                <feColorMatrix
-                  in="blur"
-                  mode="matrix"
-                  values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -8"
-                  result="goo"
-                />
-                <feBlend in="SourceGraphic" in2="goo" />
-              </filter>
-            </defs>
-          </svg>
-          <div className="gradients-container">
-            <div className="g1"></div>
-            <div className="g2"></div>
-            <div className="g3"></div>
-            <div className="g4"></div>
-            <div className="g5"></div>
-            <div className="interactive"></div>
-          </div>
-        </div>
-        <div className="relative z-10 opacity-100">{children}</div>
+      <body className={`${inter.className} h-full w-full bg-slate-900`}>
+        {children}
       </body>
     </html>
   )

@@ -16,7 +16,7 @@ const Card = ({
     <motion.div
       className={classNames(
         className,
-        'rounded-lg border-2 border-primary text-rock shadow-lg'
+        'border-primary text-rock rounded-lg border-2 shadow-lg'
       )}
       {...divProps}
     >

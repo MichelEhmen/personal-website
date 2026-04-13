@@ -31,7 +31,7 @@ const Navbar = ({ className, navbarItems }: NavbarProps) => {
         className,
         `relative flex items-center justify-between gap-4 ${
           isMenuOpen ? 'rounded-t-lg' : 'rounded-lg'
-        } bg-secondary px-4 py-1 text-rock`
+        } bg-secondary text-rock px-4 py-1`
       )}
     >
       <a href="#" className="flex flex-col text-xl font-bold">
@@ -77,7 +77,7 @@ const Navbar = ({ className, navbarItems }: NavbarProps) => {
 
       {/* Navbar-Elemente */}
       <div
-        className={`absolute left-0 top-16 flex w-full flex-col gap-2 rounded-b-lg  bg-secondary p-4 transition-all duration-300 ease-in-out md:relative md:left-auto md:top-0 md:w-auto md:flex-row md:gap-4 md:p-0 ${
+        className={`bg-secondary absolute left-0 top-16 flex w-full flex-col gap-2  rounded-b-lg p-4 transition-all duration-300 ease-in-out md:relative md:left-auto md:top-0 md:w-auto md:flex-row md:gap-4 md:p-0 ${
           isMenuOpen ? 'block' : 'hidden'
         } z-10 md:flex`}
       >
