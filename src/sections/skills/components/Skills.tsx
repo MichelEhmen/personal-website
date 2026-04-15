@@ -1,67 +1,26 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Code2, Database, Cloud, Palette, Zap, Server } from 'lucide-react'
+import { SKILLS } from '../data/skills'
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 }
+  }
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5 }
+  }
+}
 
 const Skills = () => {
-  const skills = [
-    {
-      icon: Code2,
-      title: 'Frontend Development',
-      description: 'React, TypeScript, Next.js, Tailwind CSS',
-      gradient: 'from-purple-500 to-pink-500'
-    },
-    {
-      icon: Server,
-      title: 'Backend Development',
-      description: 'Node.js, Express, REST APIs, Serverless Functions',
-      gradient: 'from-blue-500 to-cyan-500'
-    },
-    {
-      icon: Database,
-      title: 'Database & Storage',
-      description: 'PostgreSQL, MongoDB, Redis',
-      gradient: 'from-green-500 to-teal-500'
-    },
-    {
-      icon: Cloud,
-      title: 'Cloud & DevOps',
-      description: 'AWS, Docker, Cloud Platforms',
-      gradient: 'from-orange-500 to-red-500'
-    },
-    {
-      icon: Palette,
-      title: 'UI/UX Design',
-      description: 'Figma, Design Systems, Responsive Design',
-      gradient: 'from-pink-500 to-rose-500'
-    },
-    {
-      icon: Zap,
-      title: 'Performance & SEO',
-      description: 'Optimization, Web Vitals, SEO Best Practices',
-      gradient: 'from-yellow-500 to-orange-500'
-    }
-  ]
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 }
-    }
-  }
-
   return (
     <section id="skills" className="relative px-4 py-20">
       <div className="mx-auto max-w-7xl">
@@ -90,12 +49,12 @@ const Skills = () => {
           viewport={{ once: true, margin: '-100px' }}
           className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
         >
-          {skills.map((skill, index) => (
+          {SKILLS.map((skill, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="glass-card group p-6 transition-all"
+              whileHover={{ y: -4, transition: { duration: 0.15 } }}
+              className="glass-card group p-6"
             >
               <div
                 className={`mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${skill.gradient} p-3 shadow-lg`}
