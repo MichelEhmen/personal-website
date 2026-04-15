@@ -1,28 +1,19 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { useMemo, useRef } from 'react'
 import { SKILLS } from '../data/skills'
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 }
-  }
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5 }
-  }
-}
+import { useFloatingPhysics } from '../hooks/useFloatingPhysics'
+import { computeClusterBubbles } from '../utils/clusterGeometry'
+import SkillBubble from './SkillBubble'
 
 const Skills = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const clusterBubbles = useMemo(() => SKILLS.map(computeClusterBubbles), [])
+  const { refs: bubbleRefs } = useFloatingPhysics(clusterBubbles, containerRef)
+
   return (
-    <section id="skills" className="relative px-4 py-20">
+    <section id="skills" className="relative overflow-hidden px-4 py-20">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -42,32 +33,54 @@ const Skills = () => {
           </p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
-        >
-          {SKILLS.map((skill, index) => (
+        {/* Mobile + tablet: card grid */}
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:hidden">
+          {SKILLS.map((skill, i) => (
             <motion.div
-              key={index}
-              variants={itemVariants}
-              whileHover={{ y: -4, transition: { duration: 0.15 } }}
-              className="glass-card group p-6"
+              key={skill.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.07 }}
+              className="glass-card flex flex-col gap-3 p-4"
             >
-              <div
-                className={`mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${skill.gradient} p-3 shadow-lg`}
-              >
-                <skill.icon className="h-8 w-8 text-white" />
+              <div className="flex items-center gap-3">
+                <div
+                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${skill.gradient} p-2 shadow-lg`}
+                >
+                  <skill.icon className="h-5 w-5 text-white" />
+                </div>
+                <span className="font-bold text-white">{skill.title}</span>
               </div>
-              <h3 className="mb-2 text-xl font-bold text-white">
-                {skill.title}
-              </h3>
-              <p className="text-gray-400">{skill.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {skill.tags
+                  .flatMap((tag) => [tag.label, ...(tag.children ?? [])])
+                  .map((label) => (
+                    <span
+                      key={label}
+                      className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-white/80"
+                    >
+                      {label}
+                    </span>
+                  ))}
+              </div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
+
+        {/* Desktop: floating physics bubbles */}
+        <div
+          ref={containerRef}
+          className="relative hidden overflow-hidden lg:block lg:h-[800px] xl:h-[700px]"
+        >
+          {SKILLS.map((skill, i) => (
+            <SkillBubble
+              key={skill.title}
+              ref={bubbleRefs[i] as React.RefObject<HTMLDivElement>}
+              skill={skill}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )
