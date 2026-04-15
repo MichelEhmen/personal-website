@@ -2,14 +2,9 @@
 
 import PublicationCard from './PublicationCard'
 import { PUBLICATIONS } from '../data/publications'
-import { AnimatePresence, motion } from 'framer-motion'
-import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 const Publications = () => {
-  const [selectedPublicationId, setSelectedPublicationId] = useState<
-    string | null
-  >(null)
-
   return (
     <section id="articles" className="relative px-4 py-20">
       <div className="mx-auto max-w-7xl">
@@ -31,29 +26,15 @@ const Publications = () => {
           </p>
         </motion.div>
 
-        <div className="relative grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {PUBLICATIONS.map((publication, idx) => (
             <PublicationCard
               key={publication.id}
               publication={publication}
-              open={publication.id === selectedPublicationId}
-              onCardClick={setSelectedPublicationId}
               index={idx}
             />
           ))}
         </div>
-
-        <AnimatePresence>
-          {selectedPublicationId && (
-            <motion.div
-              className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedPublicationId(null)}
-            />
-          )}
-        </AnimatePresence>
       </div>
     </section>
   )
