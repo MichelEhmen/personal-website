@@ -31,7 +31,13 @@ const Navigation = () => {
       transition={{ duration: 0.6 }}
       className="fixed left-0 right-0 top-0 z-50 px-4 py-4"
     >
-      <div className="glass-card mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
+      <div
+        className="glass-card mx-auto flex max-w-7xl items-center justify-between px-6 py-3"
+        style={{
+          backdropFilter: 'blur(24px)',
+          WebkitBackdropFilter: 'blur(24px)'
+        }}
+      >
         {/* Logo */}
         <a
           href="#home"
