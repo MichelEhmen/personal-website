@@ -15,44 +15,32 @@ const PublicationModal = ({ publication, onClose }: PublicationModalProps) => {
     <motion.div
       layoutId={`pub-card-${publication.id}`}
       className="glass-card relative w-full max-w-2xl overflow-hidden"
-      style={{ borderRadius: 16 }}
+      transition={{ type: 'spring', stiffness: 350, damping: 35 }}
       onClick={(e) => e.stopPropagation()}
     >
       {publication.image && (
-        <motion.div
-          layoutId={`pub-image-${publication.id}`}
-          className="relative h-64 w-full overflow-hidden"
-        >
+        <div className="relative h-64 w-full overflow-hidden">
           <Image
             src={publication.image}
             alt={publication.title}
             fill
             className="object-cover"
           />
-        </motion.div>
+        </div>
       )}
 
       <div className="flex flex-col gap-4 p-8">
         {publication.type && (
-          <motion.span
-            layoutId={`pub-type-${publication.id}`}
-            className="inline-flex w-fit items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white/70 backdrop-blur-sm"
-          >
+          <span className="inline-flex w-fit items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white/70 backdrop-blur-sm">
             {publication.type}
-          </motion.span>
+          </span>
         )}
 
-        <motion.h3
-          layoutId={`pub-title-${publication.id}`}
-          className="text-2xl font-bold text-white"
-        >
-          {publication.title}
-        </motion.h3>
+        <h3 className="text-2xl font-bold text-white">{publication.title}</h3>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
           transition={{ duration: 0.15, delay: 0.2 }}
           className="leading-relaxed text-gray-300"
         >
@@ -63,7 +51,6 @@ const PublicationModal = ({ publication, onClose }: PublicationModalProps) => {
           <motion.a
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
             transition={{ duration: 0.15, delay: 0.25 }}
             href={publication.url}
             target="_blank"
