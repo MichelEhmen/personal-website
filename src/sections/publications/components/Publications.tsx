@@ -1,10 +1,15 @@
 'use client'
 
+import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import PublicationCard from './PublicationCard'
+import PublicationModal from './PublicationModal'
 import { PUBLICATIONS } from '../data/publications'
-import { motion } from 'framer-motion'
+import { Publication } from '../types/Publication'
 
 const Publications = () => {
+  const [selected, setSelected] = useState<Publication | null>(null)
+
   return (
     <section id="articles" className="relative px-4 py-20">
       <div className="mx-auto max-w-7xl">
@@ -32,10 +37,34 @@ const Publications = () => {
               key={publication.id}
               publication={publication}
               index={idx}
+              onClick={() => setSelected(publication)}
             />
           ))}
         </div>
       </div>
+
+      <AnimatePresence>
+        {selected && (
+          <>
+            <motion.div
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelected(null)}
+            />
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center p-4"
+              onClick={() => setSelected(null)}
+            >
+              <PublicationModal
+                publication={selected}
+                onClose={() => setSelected(null)}
+              />
+            </div>
+          </>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
