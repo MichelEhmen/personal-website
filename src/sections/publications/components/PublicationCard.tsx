@@ -24,7 +24,7 @@ const PublicationCard = ({
       transition={{
         layout: { type: 'spring', stiffness: 350, damping: 35 },
         opacity: { duration: 0.5, delay: index * 0.1 },
-        y: { duration: 0.5, delay: index * 0.1 }
+        y: { duration: 0.15 }
       }}
       whileHover={{ y: -4 }}
       onClick={onClick}
