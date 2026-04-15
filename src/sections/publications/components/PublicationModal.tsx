@@ -16,6 +16,10 @@ const PublicationModal = ({ publication, onClose }: PublicationModalProps) => {
       layoutId={`pub-card-${publication.id}`}
       className="glass-card relative w-full max-w-2xl overflow-hidden"
       transition={{ type: 'spring', stiffness: 350, damping: 35 }}
+      style={{
+        backdropFilter: 'blur(24px)',
+        WebkitBackdropFilter: 'blur(24px)'
+      }}
       onClick={(e) => e.stopPropagation()}
     >
       {publication.image && (
