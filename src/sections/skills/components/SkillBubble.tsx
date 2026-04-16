@@ -1,44 +1,21 @@
 import { forwardRef } from 'react'
 import { Skill } from '../data/skills'
+import {
+  PX,
+  PY,
+  MAIN_R,
+  GAP,
+  satRadius,
+  childRadius,
+  spreadArc,
+  angleAt
+} from '../utils/clusterGeometry'
 
 type SkillBubbleProps = {
   skill: Skill
 }
 
 const CONTAINER = 440
-const PX = 130 // physics anchor x (= RADIUS from useFloatingPhysics)
-const PY = 110 // physics anchor y — shifted up to give room below
-const MAIN_R = 58
-const GAP = 12 // gap between bubble edges
-
-// Satellite radius scales with longest word in label (no mid-word breaks needed)
-const MIN_SAT_R = 36
-const MAX_SAT_R = 56
-const MIN_CHILD_R = 26
-const MAX_CHILD_R = 38
-
-function longestWord(label: string): number {
-  return label.split(/[\s-]/).reduce((max, w) => Math.max(max, w.length), 0)
-}
-
-function satRadius(label: string): number {
-  const t = Math.min(1, Math.max(0, (longestWord(label) - 3) / 12))
-  return Math.round(MIN_SAT_R + t * (MAX_SAT_R - MIN_SAT_R))
-}
-
-function childRadius(label: string): number {
-  const t = Math.min(1, Math.max(0, (longestWord(label) - 3) / 10))
-  return Math.round(MIN_CHILD_R + t * (MAX_CHILD_R - MIN_CHILD_R))
-}
-
-function spreadArc(count: number, maxArc: number, step: number) {
-  return count <= 1 ? 0 : Math.min(maxArc, (count - 1) * step)
-}
-
-function angleAt(i: number, count: number, centerAngle: number, arc: number) {
-  if (count <= 1) return centerAngle
-  return centerAngle - arc / 2 + (i / (count - 1)) * arc
-}
 
 const SkillBubble = forwardRef<HTMLDivElement, SkillBubbleProps>(
   ({ skill }, ref) => {

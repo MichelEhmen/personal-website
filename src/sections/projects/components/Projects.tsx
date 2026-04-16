@@ -22,7 +22,7 @@ const Projects = () => {
         {/* Mobile: single column */}
         <div className="flex flex-col gap-6 md:hidden">
           {PROJECTS.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} />
+            <ProjectCard key={project.id} project={project} index={index} />
           ))}
         </div>
         {/* Desktop: two independent columns — no shared row heights */}
@@ -30,7 +30,7 @@ const Projects = () => {
           <div className="flex flex-1 flex-col gap-6">
             {PROJECTS.filter((_, i) => i % 2 === 0).map((project, index) => (
               <ProjectCard
-                key={project.title}
+                key={project.id}
                 project={project}
                 index={index * 2}
               />
@@ -39,7 +39,7 @@ const Projects = () => {
           <div className="flex flex-1 flex-col gap-6">
             {PROJECTS.filter((_, i) => i % 2 !== 0).map((project, index) => (
               <ProjectCard
-                key={project.title}
+                key={project.id}
                 project={project}
                 index={index * 2 + 1}
               />
