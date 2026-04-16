@@ -173,9 +173,14 @@ export const useFloatingPhysics = (
             b.vx = (b.vx / speed) * MAX_SPEED
             b.vy = (b.vy / speed) * MAX_SPEED
           } else if (speed < MIN_SPEED) {
-            const angle = Math.random() * Math.PI * 2
-            b.vx = Math.cos(angle) * MIN_SPEED
-            b.vy = Math.sin(angle) * MIN_SPEED
+            if (speed < 1e-6) {
+              const angle = Math.random() * Math.PI * 2
+              b.vx = Math.cos(angle) * MIN_SPEED
+              b.vy = Math.sin(angle) * MIN_SPEED
+            } else {
+              b.vx = (b.vx / speed) * MIN_SPEED
+              b.vy = (b.vy / speed) * MIN_SPEED
+            }
           }
         }
 
