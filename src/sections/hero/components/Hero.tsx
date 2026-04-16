@@ -28,7 +28,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative flex min-h-screen items-center justify-center px-4 py-20"
+      className="relative flex min-h-screen items-center justify-center px-4 pb-20 pt-28 md:py-20"
     >
       <motion.div
         className="glass-card mx-auto max-w-6xl p-8 md:p-12"
