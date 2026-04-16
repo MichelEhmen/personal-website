@@ -16,30 +16,31 @@ export const MAX_SAT_R = 56
 export const MIN_CHILD_R = 26
 export const MAX_CHILD_R = 38
 
-export function longestWord(label: string): number {
-  return label.split(/[\s-]/).reduce((max, w) => Math.max(max, w.length), 0)
-}
+export const longestWord = (label: string): number =>
+  label.split(/[\s-]/).reduce((max, w) => Math.max(max, w.length), 0)
 
-export function satRadius(label: string): number {
+export const satRadius = (label: string): number => {
   const t = Math.min(1, Math.max(0, (longestWord(label) - 3) / 12))
   return Math.round(MIN_SAT_R + t * (MAX_SAT_R - MIN_SAT_R))
 }
 
-export function childRadius(label: string): number {
+export const childRadius = (label: string): number => {
   const t = Math.min(1, Math.max(0, (longestWord(label) - 3) / 10))
   return Math.round(MIN_CHILD_R + t * (MAX_CHILD_R - MIN_CHILD_R))
 }
 
-export function spreadArc(count: number, maxArc: number, step: number): number {
-  return count <= 1 ? 0 : Math.min(maxArc, (count - 1) * step)
-}
+export const spreadArc = (
+  count: number,
+  maxArc: number,
+  step: number
+): number => (count <= 1 ? 0 : Math.min(maxArc, (count - 1) * step))
 
-export function angleAt(
+export const angleAt = (
   i: number,
   count: number,
   centerAngle: number,
   arc: number
-): number {
+): number => {
   if (count <= 1) return centerAngle
   return centerAngle - arc / 2 + (i / (count - 1)) * arc
 }
@@ -50,7 +51,7 @@ export type BubbleOffset = { relX: number; relY: number; r: number }
  * Returns the center offset of each bubble (main + primaries + children)
  * relative to the physics body position (body.x, body.y).
  */
-export function computeClusterBubbles(skill: Skill): BubbleOffset[] {
+export const computeClusterBubbles = (skill: Skill): BubbleOffset[] => {
   const bubbles: BubbleOffset[] = [
     { relX: ANCHOR_DX, relY: ANCHOR_DY, r: MAIN_R }
   ]

@@ -26,22 +26,22 @@ const jsonLd = {
   ]
 }
 
-export default function App() {
-  return (
-    <div className="relative min-h-screen overflow-hidden bg-slate-900">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <AnimatedBackground />
-      <Navigation />
-      <main className="relative z-10">
-        <Hero />
-        <Skills />
-        <Projects />
-        <Publications />
-        <Contact />
-      </main>
-    </div>
-  )
-}
+const App = () => (
+  <div className="relative min-h-screen overflow-hidden bg-slate-900">
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+    <AnimatedBackground />
+    <Navigation />
+    <main className="relative z-10">
+      <Hero />
+      <Skills />
+      <Projects />
+      <Publications />
+      <Contact />
+    </main>
+  </div>
+)
+
+export default App

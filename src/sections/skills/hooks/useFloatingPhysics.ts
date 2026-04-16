@@ -17,18 +17,17 @@ const MAX_SPEED = 1.2
 const DAMPING = 0.9995 // barely any friction — direction is maintained
 const MIN_SPEED = 0.25 // nudge if nearly stopped
 
-function randomBetween(min: number, max: number) {
-  return Math.random() * (max - min) + min
-}
+const randomBetween = (min: number, max: number) =>
+  Math.random() * (max - min) + min
 
-function clustersOverlap(
+const clustersOverlap = (
   bubblesA: BubbleOffset[],
   ax: number,
   ay: number,
   bubblesB: BubbleOffset[],
   bx: number,
   by: number
-): boolean {
+): boolean => {
   for (const ba of bubblesA) {
     for (const bb of bubblesB) {
       const dx = bx + bb.relX - (ax + ba.relX)
@@ -39,7 +38,7 @@ function clustersOverlap(
   return false
 }
 
-function clusterExtents(bubbles: BubbleOffset[]) {
+const clusterExtents = (bubbles: BubbleOffset[]) => {
   let minX = Infinity,
     maxX = -Infinity,
     minY = Infinity,
@@ -53,11 +52,11 @@ function clusterExtents(bubbles: BubbleOffset[]) {
   return { minX, maxX, minY, maxY }
 }
 
-function initBodies(
+const initBodies = (
   clusterBubbles: BubbleOffset[][],
   width: number,
   height: number
-): Body[] {
+): Body[] => {
   const bodies: Body[] = []
   const maxAttempts = 300
 
@@ -107,10 +106,10 @@ type UseFloatingPhysicsResult = {
   pausedRef: MutableRefObject<boolean>
 }
 
-export function useFloatingPhysics(
+export const useFloatingPhysics = (
   clusterBubbles: BubbleOffset[][],
   containerRef: RefObject<HTMLDivElement | null>
-): UseFloatingPhysicsResult {
+): UseFloatingPhysicsResult => {
   const count = clusterBubbles.length
   const refs = useRef<RefObject<HTMLDivElement | null>[]>([])
   const bodiesRef = useRef<Body[]>([])
@@ -159,7 +158,7 @@ export function useFloatingPhysics(
     })
     ro.observe(container)
 
-    function step() {
+    const step = () => {
       const { width: containerWidth, height: containerHeight } =
         boundsRef.current
       if (!pausedRef.current) {
