@@ -43,7 +43,7 @@ const About = () => {
         >
           <FaLinkedinIn size={24} />
         </a>
-        <a href="mailto:michelehmen@hotmail.de" className="text-primary">
+        <a href="mailto:michelehmen@gmail.com" className="text-primary">
           <FaEnvelope size={24} />
         </a>
       </div>

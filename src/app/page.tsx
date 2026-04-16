@@ -11,7 +11,7 @@ const jsonLd = {
   '@type': 'Person',
   name: 'Michel Ehmen',
   url: 'https://www.michel-ehmen.dev',
-  email: 'michelehmen@hotmail.de',
+  email: 'michelehmen@gmail.com',
   jobTitle: 'Full-Stack Developer',
   description:
     'Full-Stack Developer from Northern Germany, passionate about React, TypeScript, and building exceptional web experiences.',
