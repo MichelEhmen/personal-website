@@ -1,48 +1,47 @@
-import Modal from '@/components/Modal'
-import Navbar from '@/components/Navbar'
-import About from '@/sections/about'
-import Home from '@/sections/home'
+import Hero from '@/sections/hero'
+import Skills from '@/sections/skills'
 import Projects from '@/sections/projects'
 import Publications from '@/sections/publications'
-import { NavbarItem } from '@/types/NavbarItem'
+import Contact from '@/sections/contact'
+import Navigation from '@/components/Navigation'
+import AnimatedBackground from '@/components/AnimatedBackground'
 
-export default function App() {
-  type Section = { label?: string; id?: string; component: JSX.Element }
-
-  const sections: Section[] = [
-    { id: 'home', component: <Home key="home" /> },
-    {
-      label: 'Articles',
-      id: 'articles',
-      component: <Publications key="articles" />
-    },
-    {
-      label: 'Projects',
-      id: 'projects',
-      component: <Projects key="projects" />
-    },
-    { label: 'AboutMe', id: 'about', component: <About key="about" /> }
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Michel Ehmen',
+  url: 'https://www.michel-ehmen.dev',
+  email: 'michelehmen@gmail.com',
+  jobTitle: 'Full-Stack Developer',
+  description:
+    'Full-Stack Developer from Northern Germany, passionate about React, TypeScript, and building exceptional web experiences.',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'DE',
+    addressRegion: 'Northern Germany'
+  },
+  sameAs: [
+    'https://github.com/michelehmen',
+    'https://linkedin.com/in/michel-ehmen/'
   ]
-
-  return (
-    <>
-      <Modal />
-      <div className="container mx-auto my-4  px-4 sm:px-6 lg:px-20">
-        <Navbar
-          className="px-4"
-          navbarItems={sections
-            .map((section): { label?: string; id?: string } => ({
-              label: section.label,
-              id: section.id
-            }))
-            .filter(
-              (navbarItem): navbarItem is NavbarItem => !!navbarItem.label
-            )}
-        />
-      </div>
-      <main className="container mx-auto flex flex-col gap-4 px-4 pb-4 sm:px-6 sm:pb-6 lg:px-20">
-        {sections.map((section) => section.component)}
-      </main>
-    </>
-  )
 }
+
+const App = () => (
+  <div className="relative min-h-screen overflow-hidden bg-slate-900">
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+    <AnimatedBackground />
+    <Navigation />
+    <main className="relative z-10">
+      <Hero />
+      <Skills />
+      <Projects />
+      <Publications />
+      <Contact />
+    </main>
+  </div>
+)
+
+export default App
