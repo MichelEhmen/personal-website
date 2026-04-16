@@ -134,6 +134,8 @@ export function useFloatingPhysics(
     if (!container) return
 
     const { width, height } = container.getBoundingClientRect()
+    const boundsRef = { current: { width, height } }
+
     bodiesRef.current = initBodies(clusterBubblesRef.current, width, height)
 
     for (let i = 0; i < count; i++) {
@@ -144,10 +146,22 @@ export function useFloatingPhysics(
       }
     }
 
-    const containerWidth = width
-    const containerHeight = height
+    const ro = new ResizeObserver((entries) => {
+      const rect = entries[0].contentRect
+      const newW = rect.width
+      const newH = rect.height
+      const wasHidden = boundsRef.current.width === 0
+      boundsRef.current = { width: newW, height: newH }
+      if (wasHidden && newW > 0) {
+        // Container became visible again — reinitialize
+        bodiesRef.current = initBodies(clusterBubblesRef.current, newW, newH)
+      }
+    })
+    ro.observe(container)
 
     function step() {
+      const { width: containerWidth, height: containerHeight } =
+        boundsRef.current
       if (!pausedRef.current) {
         const bodies = bodiesRef.current
 
@@ -272,6 +286,7 @@ export function useFloatingPhysics(
 
     return () => {
       if (rafRef.current !== null) cancelAnimationFrame(rafRef.current)
+      ro.disconnect()
     }
   }, [count, containerRef])
 
