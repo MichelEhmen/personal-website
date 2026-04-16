@@ -13,13 +13,7 @@ const Publications = () => {
   return (
     <section id="articles" className="relative px-4 py-20">
       <div className="mx-auto max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
-        >
+        <div className="mb-12 text-center">
           <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
             Latest{' '}
             <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
@@ -29,14 +23,13 @@ const Publications = () => {
           <p className="mx-auto max-w-2xl text-lg text-gray-400">
             Thoughts and insights on web development
           </p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {PUBLICATIONS.map((publication, idx) => (
+          {PUBLICATIONS.map((publication) => (
             <PublicationCard
               key={publication.id}
               publication={publication}
-              index={idx}
               onClick={() => setSelected(publication)}
             />
           ))}
@@ -59,7 +52,7 @@ const Publications = () => {
       <AnimatePresence>
         {selected && (
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className="fixed bottom-0 left-0 right-0 top-24 z-50 flex items-center justify-center p-4"
             onClick={() => setSelected(null)}
           >
             <PublicationModal

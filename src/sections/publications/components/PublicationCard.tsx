@@ -6,25 +6,15 @@ import Image from 'next/image'
 
 type PublicationCardProps = {
   publication: Publication
-  index: number
   onClick: () => void
 }
 
-const PublicationCard = ({
-  publication,
-  index,
-  onClick
-}: PublicationCardProps) => {
+const PublicationCard = ({ publication, onClick }: PublicationCardProps) => {
   return (
     <motion.div
       layoutId={`pub-card-${publication.id}`}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
       transition={{
-        layout: { type: 'spring', stiffness: 350, damping: 35 },
-        opacity: { duration: 0.5, delay: index * 0.1 },
-        y: { duration: 0.15 }
+        layout: { type: 'spring', stiffness: 350, damping: 35 }
       }}
       whileHover={{ y: -4 }}
       onClick={onClick}
@@ -36,17 +26,29 @@ const PublicationCard = ({
             src={publication.image}
             alt={publication.title}
             fill
-            className="object-cover transition-transform duration-300 group-hover:scale-105"
+            className={`${publication.imageContain ? 'object-contain' : 'object-cover'} transition-transform duration-300 group-hover:scale-105`}
           />
+          <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-white/10 to-transparent" />
         </div>
       )}
 
       <div className="flex flex-1 flex-col gap-3 p-6">
-        {publication.type && (
-          <span className="inline-flex w-fit items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white/70 backdrop-blur-sm">
-            {publication.type}
-          </span>
-        )}
+        <div className="flex items-center gap-2 text-xs text-white/50">
+          {publication.type && (
+            <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 font-medium backdrop-blur-sm">
+              {publication.type}
+            </span>
+          )}
+          {publication.type && publication.date && <span>·</span>}
+          {publication.date && (
+            <span>
+              {new Date(publication.date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long'
+              })}
+            </span>
+          )}
+        </div>
 
         <h3 className="text-lg font-bold leading-snug text-white">
           {publication.title}

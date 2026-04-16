@@ -89,6 +89,10 @@ const Navigation = () => {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
             className="glass-card mx-auto mt-4 max-w-7xl overflow-hidden md:hidden"
+            style={{
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)'
+            }}
           >
             <div className="flex flex-col p-4">
               {navItems.map((item, index) => (

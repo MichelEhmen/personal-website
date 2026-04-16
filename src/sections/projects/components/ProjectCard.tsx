@@ -24,13 +24,6 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{
-        opacity: { duration: 0.5, delay: index * 0.1 },
-        y: { duration: 0.15 }
-      }}
       whileHover={{ y: -4 }}
       onClick={() => setIsOpen(!isOpen)}
       className="glass-card group cursor-pointer overflow-hidden"

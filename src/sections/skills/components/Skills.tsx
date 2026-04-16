@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { useMemo, useRef } from 'react'
 import { SKILLS } from '../data/skills'
 import { useFloatingPhysics } from '../hooks/useFloatingPhysics'
@@ -15,13 +14,7 @@ const Skills = () => {
   return (
     <section id="skills" className="relative overflow-hidden px-4 py-20">
       <div className="mx-auto max-w-7xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
-        >
+        <div className="mb-12 text-center">
           <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
             Skills &{' '}
             <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
@@ -31,17 +24,13 @@ const Skills = () => {
           <p className="mx-auto max-w-2xl text-lg text-gray-400">
             Technologies and tools I use to bring ideas to life
           </p>
-        </motion.div>
+        </div>
 
         {/* Mobile + tablet: card grid */}
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:hidden">
-          {SKILLS.map((skill, i) => (
-            <motion.div
+          {SKILLS.map((skill) => (
+            <div
               key={skill.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
               className="glass-card flex flex-col gap-3 p-4"
             >
               <div className="flex items-center gap-3">
@@ -64,7 +53,7 @@ const Skills = () => {
                     </span>
                   ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
