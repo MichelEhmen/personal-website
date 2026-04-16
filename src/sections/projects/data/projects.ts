@@ -3,9 +3,9 @@ import { Project } from '../types/Project'
 export const PROJECTS: Project[] = [
   {
     id: 'kpi-sports-car',
-    title: 'KPI Management System for Sports Car Production',
+    title: 'KPI Management System for Automotive Production',
     description:
-      'Led frontend development of a production KPI platform for a premium German sports car manufacturer. Aggregates live manufacturing data and visualizes historical trends, cutting down error detection time and streamlining milestone planning across vehicle models.',
+      'Led frontend development of a production KPI platform for a premium automotive manufacturer. Aggregates live manufacturing data and visualizes historical trends, cutting down error detection time and streamlining milestone planning across vehicle models.',
     technologies: ['TypeScript', 'React', 'SCSS', 'AWS']
   },
   {
