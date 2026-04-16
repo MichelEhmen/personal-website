@@ -5,6 +5,7 @@ import { SKILLS } from '../data/skills'
 import { useFloatingPhysics } from '../hooks/useFloatingPhysics'
 import { computeClusterBubbles } from '../utils/clusterGeometry'
 import SkillBubble from './SkillBubble'
+import MobileSkillBubbles from './MobileSkillBubbles'
 
 const Skills = () => {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -26,35 +27,9 @@ const Skills = () => {
           </p>
         </div>
 
-        {/* Mobile + tablet: card grid */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:hidden">
-          {SKILLS.map((skill) => (
-            <div
-              key={skill.title}
-              className="glass-card flex flex-col gap-3 p-4"
-            >
-              <div className="flex items-center gap-3">
-                <div
-                  className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${skill.gradient} p-2 shadow-lg`}
-                >
-                  <skill.icon className="h-5 w-5 text-white" />
-                </div>
-                <span className="font-bold text-white">{skill.title}</span>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {skill.tags
-                  .flatMap((tag) => [tag.label, ...(tag.children ?? [])])
-                  .map((label) => (
-                    <span
-                      key={label}
-                      className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs font-medium text-white/80"
-                    >
-                      {label}
-                    </span>
-                  ))}
-              </div>
-            </div>
-          ))}
+        {/* Mobile + tablet: floating single bubbles */}
+        <div className="lg:hidden">
+          <MobileSkillBubbles />
         </div>
 
         {/* Desktop: floating physics bubbles */}

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, RefObject, MutableRefObject } from 'react'
-import { BubbleOffset } from '../utils/clusterGeometry'
+import { PHYS_RADIUS, BubbleOffset } from '../utils/clusterGeometry'
 
 type Body = {
   x: number
@@ -10,9 +10,6 @@ type Body = {
   vy: number
   bubbles: BubbleOffset[]
 }
-
-// Must match PHYS_RADIUS in clusterGeometry.ts
-const RADIUS = 130
 const MAX_SPEED = 1.2
 const DAMPING = 0.9995 // barely any friction — direction is maintained
 const MIN_SPEED = 0.25 // nudge if nearly stopped
@@ -108,7 +105,8 @@ type UseFloatingPhysicsResult = {
 
 export const useFloatingPhysics = (
   clusterBubbles: BubbleOffset[][],
-  containerRef: RefObject<HTMLDivElement | null>
+  containerRef: RefObject<HTMLDivElement | null>,
+  bodyOffset = PHYS_RADIUS
 ): UseFloatingPhysicsResult => {
   const count = clusterBubbles.length
   const refs = useRef<RefObject<HTMLDivElement | null>[]>([])
@@ -141,7 +139,7 @@ export const useFloatingPhysics = (
       const el = refs.current[i]?.current
       if (el) {
         const b = bodiesRef.current[i]
-        el.style.transform = `translate(${b.x - RADIUS}px, ${b.y - RADIUS}px)`
+        el.style.transform = `translate(${b.x - bodyOffset}px, ${b.y - bodyOffset}px)`
       }
     }
 
@@ -278,7 +276,7 @@ export const useFloatingPhysics = (
           const el = refs.current[i]?.current
           if (el) {
             const b = bodies[i]
-            el.style.transform = `translate(${b.x - RADIUS}px, ${b.y - RADIUS}px)`
+            el.style.transform = `translate(${b.x - bodyOffset}px, ${b.y - bodyOffset}px)`
           }
         }
       }
