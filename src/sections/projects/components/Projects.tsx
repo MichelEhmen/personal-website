@@ -1,41 +1,53 @@
-import Section from '@/components/Section'
+'use client'
+
 import ProjectCard from './ProjectCard'
-import { Project } from '../types/Project'
+import { PROJECTS } from '../data/projects'
 
 const Projects = () => {
-  const projects: Project[] = [
-    {
-      title: 'KPI Management System for a factory',
-      description:
-        'Developed a KPI Manager for a manufacturer, aggregating production data and enabling visualization of historical values for quicker error detection and milestone planning for different models.',
-      technologies: ['TypeScript', 'React', 'AWS', 'SCSS'],
-      fromDate: new Date(),
-      toDate: new Date()
-    },
-    {
-      title: 'Smart City Dashboard for Real-Time Information',
-      description:
-        'Developed a smart city dashboard web application for a city, aimed at providing citizens with real-time information on parking space occupancy and weather conditions. The application features cloud connectivity and dynamically aggregates data from multiple sources, offering various user-friendly views.',
-      technologies: [
-        'TypeScript',
-        'React',
-        'Tailwind',
-        'Docker',
-        'Postgres',
-        'Serverless Functions'
-      ],
-      fromDate: new Date(),
-      toDate: new Date()
-    }
-  ]
   return (
-    <Section title="Projects" id="projects">
-      <div className="grid grid-cols-1 items-start gap-4 sm:grid-cols-2 md:grid-cols-2">
-        {projects.map((project) => (
-          <ProjectCard key={project.title} project={project}></ProjectCard>
-        ))}
+    <section id="projects" className="relative px-4 py-20">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 text-center">
+          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
+            Featured{' '}
+            <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
+              Projects
+            </span>
+          </h2>
+          <p className="mx-auto max-w-2xl text-lg text-gray-400">
+            Real-world applications I&apos;ve built for clients
+          </p>
+        </div>
+
+        {/* Mobile: single column */}
+        <div className="flex flex-col gap-6 md:hidden">
+          {PROJECTS.map((project, index) => (
+            <ProjectCard key={project.id} project={project} index={index} />
+          ))}
+        </div>
+        {/* Desktop: two independent columns — no shared row heights */}
+        <div className="hidden gap-6 md:flex">
+          <div className="flex flex-1 flex-col gap-6">
+            {PROJECTS.filter((_, i) => i % 2 === 0).map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index * 2}
+              />
+            ))}
+          </div>
+          <div className="flex flex-1 flex-col gap-6">
+            {PROJECTS.filter((_, i) => i % 2 !== 0).map((project, index) => (
+              <ProjectCard
+                key={project.id}
+                project={project}
+                index={index * 2 + 1}
+              />
+            ))}
+          </div>
+        </div>
       </div>
-    </Section>
+    </section>
   )
 }
 

@@ -49,6 +49,7 @@ const ValentinePage = () => {
                 I&lsquo;ll see you in Münster on Valentine&lsquo;s Day!
               </p>
               <div className="mt-6 flex justify-center">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOWxxcDhoMjJxMTNmMGE4cmRudjRtbmVzZGM3azJsYnB4cnF6OGp0YyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ytu2GUYbvhz7zShGwS/giphy.gif"
                   alt="Celebrating"
