@@ -2,6 +2,34 @@ import { Project } from '../types/Project'
 
 export const PROJECTS: Project[] = [
   {
+    id: 'vehicle-recognition-app',
+    title: 'Vehicle Recognition Companion App',
+    description:
+      'Leading frontend development of a companion mobile app for a premium automotive manufacturer. Uses on-device camera and ML to automatically scan and recognize vehicle identification plates, feeding the result into downstream vehicle processing workflows.',
+    technologies: [
+      'TypeScript',
+      'React Native',
+      'Swift',
+      'ONNX',
+      'AWS',
+      'Claude Code'
+    ]
+  },
+  {
+    id: '3d-vehicle-visualization',
+    title: 'Interactive 3D Vehicle Visualization and Planning',
+    description:
+      'Led frontend development of a web application for a premium automotive manufacturer that provides interactive 3D visualization of vehicle planning processes and enables management of various vehicle models and configurations.',
+    technologies: ['TypeScript', 'React', 'Angular', 'AWS']
+  },
+  {
+    id: 'predictive-maintenance',
+    title: 'Web Application for Predictive Maintenance',
+    description:
+      'Led frontend development of a predictive maintenance web app for a premium automotive manufacturer. Surfaces maintenance-relevant machinery early so teams can service proactively and reduce the risk of production downtime.',
+    technologies: ['TypeScript', 'React', 'AWS']
+  },
+  {
     id: 'kpi-sports-car',
     title: 'KPI Management System for Automotive Production',
     description:
