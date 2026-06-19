@@ -40,7 +40,7 @@ const DesignSwitcher = ({ active }: DesignSwitcherProps) => {
       role="radiogroup"
       aria-label="Design auswählen"
       onKeyDown={handleKeyDown}
-      className="fixed right-4 top-4 z-[60] flex items-center gap-2 rounded-full border border-white/15 bg-black/70 px-2 py-1.5 backdrop-blur-md sm:right-6 sm:top-6"
+      className="fixed bottom-4 right-4 z-[60] flex items-center gap-2 rounded-full border border-white/15 bg-black/70 px-2 py-1.5 backdrop-blur-md sm:bottom-6 sm:right-6"
     >
       {DESIGN_ORDER.map((id) => {
         const entry = DESIGNS[id]
@@ -60,7 +60,11 @@ const DesignSwitcher = ({ active }: DesignSwitcherProps) => {
             title={entry.label}
             tabIndex={isActive ? 0 : -1}
             onClick={() => navigate(id)}
-            className="flex h-7 w-7 items-center justify-center rounded-full hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/70"
+            className={`flex h-8 w-8 items-center justify-center rounded-full transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/70 ${
+              isActive
+                ? 'scale-110 bg-white/20 ring-1 ring-white/50'
+                : 'opacity-40 hover:bg-white/5 hover:opacity-80'
+            }`}
           >
             <Hint active={isActive} />
           </button>
