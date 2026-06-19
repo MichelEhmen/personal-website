@@ -1,8 +1,14 @@
 import './global.css'
-import { Inter } from 'next/font/google'
+import '@/designs/brutalist/styles.css'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import { Metadata } from 'next'
 
 const inter = Inter({ subsets: ['latin'] })
+const jetbrainsMono = JetBrains_Mono({
+  weight: ['400', '500', '700'],
+  subsets: ['latin'],
+  variable: '--font-mono'
+})
 
 const SITE_URL = 'https://www.michel-ehmen.dev'
 
@@ -63,7 +69,9 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html lang="en" className="h-full w-full">
-      <body className={`${inter.className} h-full w-full bg-slate-900`}>
+      <body
+        className={`${inter.className} ${jetbrainsMono.variable} h-full w-full bg-black`}
+      >
         {children}
       </body>
     </html>

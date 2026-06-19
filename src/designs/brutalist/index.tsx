@@ -7,8 +7,8 @@ import Publications from './components/Publications'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
-const V2Page = () => (
-  <>
+const BrutalistDesign = () => (
+  <div className="brut-root">
     <AsciiBackground />
     <Nav />
     <Hero />
@@ -17,7 +17,7 @@ const V2Page = () => (
     <Publications />
     <Contact />
     <Footer />
-  </>
+  </div>
 )
 
-export default V2Page
+export default BrutalistDesign
