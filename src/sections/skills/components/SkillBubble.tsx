@@ -17,6 +17,12 @@ type SkillBubbleProps = {
 
 const CONTAINER = 440
 
+// Math.cos/Math.sin are not bit-identical across V8 versions/platforms, so
+// raw trig results diverge in the last digit between SSR (Node) and the
+// browser, breaking hydration. Round all rendered coordinates to a sub-pixel
+// granularity that's visually irrelevant but deterministic.
+const r3 = (n: number) => Math.round(n * 1000) / 1000
+
 const SkillBubble = forwardRef<HTMLDivElement, SkillBubbleProps>(
   ({ skill }, ref) => {
     const tags = skill.tags
@@ -28,8 +34,8 @@ const SkillBubble = forwardRef<HTMLDivElement, SkillBubbleProps>(
       const r = satRadius(tag.label)
       const orbit = MAIN_R + GAP + r
       const pa = angleAt(i, tags.length, Math.PI / 2, primArc)
-      const cx = PX + orbit * Math.cos(pa)
-      const cy = PY + orbit * Math.sin(pa)
+      const cx = r3(PX + orbit * Math.cos(pa))
+      const cy = r3(PY + orbit * Math.sin(pa))
 
       const childArc = spreadArc(
         tag.children?.length ?? 0,
@@ -43,8 +49,8 @@ const SkillBubble = forwardRef<HTMLDivElement, SkillBubbleProps>(
         return {
           label,
           r: cr,
-          cx: cx + childOrbit * Math.cos(ca),
-          cy: cy + childOrbit * Math.sin(ca),
+          cx: r3(cx + childOrbit * Math.cos(ca)),
+          cy: r3(cy + childOrbit * Math.sin(ca)),
           ca,
           childOrbit
         }
@@ -73,10 +79,10 @@ const SkillBubble = forwardRef<HTMLDivElement, SkillBubbleProps>(
             <g key={i}>
               {/* Main → primary: gap-clipped */}
               <line
-                x1={PX + MAIN_R * Math.cos(pa)}
-                y1={PY + MAIN_R * Math.sin(pa)}
-                x2={cx - r * Math.cos(pa)}
-                y2={cy - r * Math.sin(pa)}
+                x1={r3(PX + MAIN_R * Math.cos(pa))}
+                y1={r3(PY + MAIN_R * Math.sin(pa))}
+                x2={r3(cx - r * Math.cos(pa))}
+                y2={r3(cy - r * Math.sin(pa))}
                 stroke="rgba(255,255,255,0.2)"
                 strokeWidth={1.5}
               />
@@ -90,10 +96,10 @@ const SkillBubble = forwardRef<HTMLDivElement, SkillBubbleProps>(
                 return (
                   <line
                     key={j}
-                    x1={cx + r * ux}
-                    y1={cy + r * uy}
-                    x2={c.cx - c.r * ux}
-                    y2={c.cy - c.r * uy}
+                    x1={r3(cx + r * ux)}
+                    y1={r3(cy + r * uy)}
+                    x2={r3(c.cx - c.r * ux)}
+                    y2={r3(c.cy - c.r * uy)}
                     stroke="rgba(255,255,255,0.15)"
                     strokeWidth={1.5}
                   />
