@@ -43,10 +43,15 @@ const DesignShell = () => {
 
   return (
     <div
-      className="relative min-h-screen overflow-x-hidden"
+      className="relative min-h-screen"
       style={{
         backgroundColor: BG_COLORS[current],
-        transition: 'background-color 0.55s ease'
+        transition: 'background-color 0.55s ease',
+        // overflow-x: clip clips horizontally without turning this element
+        // into a scroll container — overflow-x: hidden would, which scopes
+        // child position:sticky to this element and breaks viewport-relative
+        // stickiness on the brutalist nav.
+        overflowX: 'clip'
       }}
     >
       {/* Backgrounds: viewport-fixed, opacity crossfade. Only mount the
