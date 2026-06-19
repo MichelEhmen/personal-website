@@ -2,12 +2,11 @@ import Image from 'next/image'
 import { PROFILE } from '../data/profile'
 
 const Hero = () => (
-  <section id="hero" className="relative z-10 min-h-screen px-6 py-16 md:px-12">
-    <div className="brut-caps mb-12">
-      Michel Ehmen / Portfolio — v2 prototype
-    </div>
-
-    <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-[1fr_auto] md:items-end md:gap-16">
+  <section
+    id="hero"
+    className="relative z-10 flex min-h-screen flex-col px-6 py-12 md:px-12"
+  >
+    <div className="mx-auto my-auto grid w-full max-w-6xl gap-12 md:grid-cols-[1fr_auto] md:items-end md:gap-16">
       {/* Left column */}
       <div>
         <div className="brut-prompt mb-4">michel@dev:~$ whoami</div>
@@ -82,7 +81,7 @@ const Hero = () => (
       </figure>
     </div>
 
-    <div className="brut-caps mt-24 text-center">— end of file —</div>
+    <div className="brut-caps text-center">— end of file —</div>
   </section>
 )
 
