@@ -63,7 +63,7 @@ const AnimatedBackground = () => {
         isDesktop ? (
           <motion.div
             key={i}
-            className={`absolute rounded-full bg-gradient-to-br ${blob.gradient} opacity-20 blur-3xl`}
+            className={`absolute rounded-full bg-gradient-to-br ${blob.gradient} opacity-20 blur-2xl`}
             style={blob.style}
             animate={blob.animate}
             transition={{
@@ -75,7 +75,7 @@ const AnimatedBackground = () => {
         ) : (
           <div
             key={i}
-            className={`absolute rounded-full bg-gradient-to-br ${blob.gradient} opacity-20 blur-3xl`}
+            className={`absolute rounded-full bg-gradient-to-br ${blob.gradient} opacity-20 blur-2xl`}
             style={blob.style}
           />
         )

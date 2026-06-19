@@ -34,8 +34,8 @@ const Navigation = () => {
       <div
         className="glass-card mx-auto flex max-w-7xl items-center justify-between px-6 py-3"
         style={{
-          backdropFilter: 'blur(24px)',
-          WebkitBackdropFilter: 'blur(24px)'
+          backdropFilter: 'blur(16px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(16px) saturate(180%)'
         }}
       >
         {/* Logo */}
@@ -90,8 +90,8 @@ const Navigation = () => {
             transition={{ duration: 0.2 }}
             className="glass-card mx-auto mt-4 max-w-7xl overflow-hidden md:hidden"
             style={{
-              backdropFilter: 'blur(24px)',
-              WebkitBackdropFilter: 'blur(24px)'
+              backdropFilter: 'blur(16px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(16px) saturate(180%)'
             }}
           >
             <div className="flex flex-col p-4">
