@@ -1,4 +1,3 @@
-import AsciiBackground from './components/AsciiBackground'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Skills from './components/Skills'
@@ -7,9 +6,8 @@ import Publications from './components/Publications'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 
-const BrutalistDesign = () => (
+const BrutalistContent = () => (
   <div className="brut-root">
-    <AsciiBackground />
     <Nav />
     <Hero />
     <Skills />
@@ -20,4 +18,4 @@ const BrutalistDesign = () => (
   </div>
 )
 
-export default BrutalistDesign
+export default BrutalistContent

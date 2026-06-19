@@ -7,7 +7,6 @@
   color: var(--brut-fg);
   font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
   min-height: 100vh;
-  background: var(--brut-bg);
 }
 
 .brut-root ::selection {
