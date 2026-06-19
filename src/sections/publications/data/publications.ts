@@ -3,6 +3,17 @@ import { IMAGES } from './images'
 
 export const PUBLICATIONS: Publication[] = [
   {
+    id: '6',
+    title: 'From Prompt to Product — Why the Design Step Matters',
+    description:
+      'AI-assisted design tools work best when they are grounded in an existing design system rather than generating interfaces from scratch. This article walks through Google Stitch, Figma AI, and Claude Design, and shows why structuring visual properties as design tokens lets AI stay consistent with brand guidelines and component libraries on the path from prompt to product.',
+    image: IMAGES.codecentricBlog,
+    imageContain: true,
+    url: 'https://www.codecentric.de/en/knowledge-hub/blog/from-prompt-to-product-why-the-design-step-matters',
+    type: 'article',
+    date: '2026-06-16'
+  },
+  {
     id: '5',
     title: 'React is dead, long live React — React 19 is here',
     description:
