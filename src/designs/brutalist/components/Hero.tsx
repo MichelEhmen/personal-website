@@ -4,35 +4,64 @@ import { PROFILE } from '../data/profile'
 const Hero = () => (
   <section
     id="hero"
-    className="relative z-10 flex min-h-screen flex-col px-6 py-12 md:px-12"
+    className="relative z-10 flex flex-col px-6 py-12 md:px-12"
+    style={{
+      // Fill the viewport below the sticky nav. --brut-nav-h is set on
+      // .brut-root by Nav via ResizeObserver. 100svh (small viewport) is
+      // friendlier on mobile than 100vh because it accounts for the URL bar.
+      minHeight: 'calc(100svh - var(--brut-nav-h, 0px))'
+    }}
   >
     <div className="mx-auto my-auto grid w-full max-w-6xl gap-12 md:grid-cols-[1fr_auto] md:items-end md:gap-16">
-      {/* Left column */}
-      <div>
-        <div className="brut-prompt mb-4">michel@dev:~$ whoami</div>
+      {/* Left column — use vertical rhythm via flex+gap instead of per-element mb-* */}
+      <div className="flex flex-col gap-8 md:gap-10">
+        <div className="brut-prompt">michel@dev:~$ whoami</div>
 
+        {/* Mobile: small image + name side-by-side. Hidden on md+ where
+            the large figure in the right column takes over. */}
+        <div className="flex items-center gap-6 md:hidden">
+          <div className="brut-card brut-tilt relative h-20 w-20 flex-shrink-0 overflow-hidden">
+            <Image
+              src={PROFILE.profileImage}
+              alt={PROFILE.name}
+              fill
+              sizes="80px"
+              className="object-cover"
+              style={{ filter: 'grayscale(1) contrast(1.1)' }}
+              priority
+            />
+          </div>
+          <h1
+            className="font-bold leading-[0.95]"
+            style={{ fontSize: 'clamp(2.25rem, 11vw, 3.5rem)' }}
+          >
+            {PROFILE.name}
+          </h1>
+        </div>
+
+        {/* Desktop: full-width name without inline image */}
         <h1
-          className="mb-6 font-bold leading-[0.95]"
+          className="hidden font-bold leading-[0.95] md:block"
           style={{ fontSize: 'clamp(3rem, 8vw, 6rem)' }}
         >
           {PROFILE.name}
         </h1>
 
-        <div
-          className="my-6 h-[2px] w-24"
-          style={{ background: 'var(--brut-accent)' }}
-        />
+        <div>
+          <div
+            className="mb-6 h-[2px] w-24"
+            style={{ background: 'var(--brut-accent)' }}
+          />
+          <p className="brut-caps mb-2">{PROFILE.title}</p>
+          <p
+            className="max-w-2xl text-base leading-relaxed"
+            style={{ color: 'rgba(245,245,240,0.8)' }}
+          >
+            {PROFILE.bio}
+          </p>
+        </div>
 
-        <p className="brut-caps mb-2">{PROFILE.title}</p>
-
-        <p
-          className="mb-8 max-w-2xl text-base leading-relaxed"
-          style={{ color: 'rgba(245,245,240,0.8)' }}
-        >
-          {PROFILE.bio}
-        </p>
-
-        <nav className="mb-8 flex flex-wrap gap-1">
+        <nav className="flex flex-wrap gap-1">
           {PROFILE.links.map((link) => (
             <a
               key={link.label}
@@ -48,28 +77,28 @@ const Hero = () => (
 
         <a
           href="#projects"
-          className="brut-button inline-block px-5 py-3 text-base font-medium"
+          className="brut-button inline-block self-start px-5 py-3 text-base font-medium"
         >
           {'>_ view my work'}
         </a>
 
-        <div className="brut-caps mt-10 flex flex-wrap items-center gap-x-6 gap-y-2">
+        <div className="brut-caps hidden flex-wrap items-center gap-x-6 gap-y-2 md:flex">
           <span>
             <span className="brut-status-dot" />
             available for work
           </span>
-          <span>{'// Niedersachsen, DE'}</span>
-          <span>{'// uptime: 5y 11mo'}</span>
         </div>
       </div>
 
-      {/* Right column */}
-      <figure className="flex w-full max-w-sm flex-col gap-3 md:w-80">
+      {/* Right column: large portrait — desktop only, mobile uses the
+          inline mini-image next to the name above */}
+      <figure className="hidden w-full max-w-sm flex-col gap-3 md:flex md:w-80">
         <div className="brut-card brut-tilt relative aspect-square overflow-hidden">
           <Image
             src={PROFILE.profileImage}
             alt={PROFILE.name}
             fill
+            sizes="320px"
             className="object-cover"
             style={{ filter: 'grayscale(1) contrast(1.1)' }}
             priority
