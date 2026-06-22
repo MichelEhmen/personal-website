@@ -85,7 +85,7 @@ const Hero = () => (
         <div className="brut-caps hidden flex-wrap items-center gap-x-6 gap-y-2 md:flex">
           <span>
             <span className="brut-status-dot" />
-            available for work
+            taking on new ideas
           </span>
         </div>
       </div>
@@ -104,9 +104,7 @@ const Hero = () => (
             priority
           />
         </div>
-        <figcaption className="brut-caps">
-          {'// staring directly into your soul since 2019'}
-        </figcaption>
+        <figcaption className="brut-caps">{'// portrait.jpg'}</figcaption>
       </figure>
     </div>
 

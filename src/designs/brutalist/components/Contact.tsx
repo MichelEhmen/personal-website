@@ -28,13 +28,13 @@ const Contact = () => (
           </div>
           <div>
             <dt className="brut-caps mb-1">location</dt>
-            <dd>Northern Germany — Niedersachsen, DE</dd>
+            <dd>Northern Germany</dd>
           </div>
           <div>
             <dt className="brut-caps mb-1">status</dt>
             <dd>
               <span className="brut-status-dot" />
-              available for work
+              taking on new ideas
             </dd>
           </div>
         </dl>
