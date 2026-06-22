@@ -1,5 +1,5 @@
 const Contact = () => (
-  <section id="contact" className="relative z-10 px-6 py-24 md:px-12">
+  <section id="contact" className="relative z-10 px-6 py-16 md:px-12 md:py-24">
     <div className="mx-auto max-w-6xl">
       <header className="mb-12">
         <div className="brut-prompt mb-2">{'$ ./contact.sh'}</div>

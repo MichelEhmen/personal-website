@@ -1,7 +1,7 @@
 import { PROJECTS } from '@/sections/projects/data/projects'
 
 const Projects = () => (
-  <section id="projects" className="relative z-10 px-6 py-24 md:px-12">
+  <section id="projects" className="relative z-10 px-6 pt-16 md:px-12 md:pt-24">
     <div className="mx-auto max-w-6xl">
       <header className="mb-12">
         <div className="brut-prompt mb-2">
