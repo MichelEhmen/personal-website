@@ -12,7 +12,7 @@ const Hero = () => (
       minHeight: 'calc(100svh - var(--brut-nav-h, 0px))'
     }}
   >
-    <div className="mx-auto my-auto grid w-full max-w-6xl gap-12 md:grid-cols-[1fr_auto] md:items-end md:gap-16">
+    <div className="mx-auto my-auto grid w-full max-w-6xl gap-12 md:grid-cols-[1fr_auto] md:items-start md:gap-16">
       {/* Left column — use vertical rhythm via flex+gap instead of per-element mb-* */}
       <div className="flex flex-col gap-8 md:gap-10">
         <div className="brut-prompt">michel@dev:~$ whoami</div>
@@ -92,7 +92,7 @@ const Hero = () => (
 
       {/* Right column: large portrait — desktop only, mobile uses the
           inline mini-image next to the name above */}
-      <figure className="hidden w-full max-w-sm flex-col gap-3 md:flex md:w-80">
+      <figure className="hidden w-full max-w-sm flex-col gap-5 md:flex md:w-80">
         <div className="brut-card brut-tilt relative aspect-square overflow-hidden">
           <Image
             src={PROFILE.profileImage}
