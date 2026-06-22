@@ -48,7 +48,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
           {project.technologies.map((technology, idx) => (
             <span
               key={technology + idx}
-              className="rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 text-xs font-medium text-white/70 backdrop-blur-sm"
+              className="rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 text-xs font-medium text-white/70"
             >
               {technology}
             </span>

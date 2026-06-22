@@ -39,7 +39,7 @@ const PublicationModal = ({ publication, onClose }: PublicationModalProps) => {
       <div className="flex flex-1 flex-col gap-4 overflow-hidden p-8">
         <div className="flex shrink-0 items-center gap-2 text-xs text-white/50">
           {publication.type && (
-            <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 font-medium backdrop-blur-sm">
+            <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 font-medium">
               {publication.type}
             </span>
           )}

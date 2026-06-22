@@ -35,7 +35,7 @@ const PublicationCard = ({ publication, onClick }: PublicationCardProps) => {
       <div className="flex flex-1 flex-col gap-3 p-6">
         <div className="flex items-center gap-2 text-xs text-white/50">
           {publication.type && (
-            <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 font-medium backdrop-blur-sm">
+            <span className="rounded-full border border-white/20 bg-white/10 px-3 py-1 font-medium">
               {publication.type}
             </span>
           )}
