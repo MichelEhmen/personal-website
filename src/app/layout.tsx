@@ -2,6 +2,7 @@ import './global.css'
 import '@/designs/brutalist/styles.css'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
 
 const inter = Inter({ subsets: ['latin'] })
 const jetbrainsMono = JetBrains_Mono({
@@ -73,6 +74,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         className={`${inter.className} ${jetbrainsMono.variable} h-full w-full bg-black`}
       >
         {children}
+        <Analytics />
       </body>
     </html>
   )
